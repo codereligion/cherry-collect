@@ -1,12 +1,39 @@
-*.class
+# common backup files
+*~
+*.swp
+*.old
+*.bak
+._*
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
+# directory files
+*.directory
+.DS_Store
 
-# Package Files #
-*.jar
-*.war
-*.ear
+# eclipse
+.settings
+.buildpath
+.classpath
+.project
+.scala_dependencies
+.pmd
+.pydevproject
+*.pyc
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# idea
+.idea
+*.ipr
+*.iws
+*.iml
+
+# log files and folders
+logs
+*.log
+
+# netbeans
+nbproject
+project.xml
+
+# maven
+release.properties
+pom.xml.releaseBackup
+target/
