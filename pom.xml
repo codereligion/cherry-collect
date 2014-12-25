@@ -12,7 +12,7 @@
     <artifactId>codereligion-cherry-collect</artifactId>
     <version>0.1.0-SNAPSHOT</version>
 
-    <name>Cherry Collect</name>
+    <name>Cherry-Collect</name>
     <description>Contains utility classes for working with iterables and maps and their respective extensions and implementations</description>
     <url>https://github.com/codereligion/cherry-collect</url>
 
