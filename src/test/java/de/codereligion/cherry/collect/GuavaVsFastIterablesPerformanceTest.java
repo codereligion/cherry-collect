@@ -24,6 +24,7 @@ import com.google.common.collect.Lists;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class GuavaVsFastIterablesPerformanceTest {
@@ -45,6 +46,7 @@ public class GuavaVsFastIterablesPerformanceTest {
     }
 
     @Test
+    @Ignore("this should only be run manually")
     public void filterToList() {
 
         final int powers = 20;
