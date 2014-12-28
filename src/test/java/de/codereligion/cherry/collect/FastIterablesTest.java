@@ -23,7 +23,16 @@ import org.junit.Test;
 import static org.hamcrest.Matchers.hasEntry;
 import static org.junit.Assert.assertThat;
 
-public class Collections3Test {
+/**
+ * TODO
+ *
+ * @author Sebastian Gr&ouml;bler
+ * @since 28.12.2014
+ */
+public class FastIterablesTest {
+
+    // TODO test contract (parameter validation, return value)
+
 
     @Test
     public void transformsToMap() {
@@ -32,7 +41,7 @@ public class Collections3Test {
         final Collection<Integer> integers = Lists.newArrayList(1, 2, 3);
 
         // when
-        final Map<String, Integer> map = Collections3.transformToMap(integers, Functions.toStringFunction());
+        final Map<String, Integer> map = FastIterables.transformToHashMap(integers, Functions.toStringFunction());
 
         // then
         assertThat(map, hasEntry("1", 1));
