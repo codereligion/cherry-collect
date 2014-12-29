@@ -28,7 +28,7 @@ import org.hamcrest.TypeSafeMatcher;
  * constructors in static utility methods
  * 
  * @author Sebastian Gröbler
- * @since 19.06.2013
+ * @since 29.12.2014
  */
 public final class IsNotInstantiatable extends TypeSafeMatcher<Class<?>> {
 	

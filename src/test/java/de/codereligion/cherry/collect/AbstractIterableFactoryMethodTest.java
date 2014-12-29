@@ -16,11 +16,11 @@
 package de.codereligion.cherry.collect;
 
 import com.google.common.base.Function;
-import com.google.common.base.Functions;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Lists;
 import de.codereligion.cherry.matcher.IsNotInstantiatable;
+import javax.annotation.Nullable;
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.hasItems;
@@ -35,9 +35,17 @@ import static org.junit.Assert.assertThat;
  */
 public abstract class AbstractIterableFactoryMethodTest {
 
+    private Function<Integer, String> toStringFunction = new Function<Integer, String>() {
+        @Nullable
+        @Override
+        public String apply(final Integer input) {
+            return input.toString();
+        }
+    };
+
     @Test
     public void isNotInstantiateable() {
-         assertThat(getFactoryClass(), IsNotInstantiatable.isNotInstantiatable());
+        assertThat(getFactoryClass(), IsNotInstantiatable.isNotInstantiatable());
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -91,7 +99,7 @@ public abstract class AbstractIterableFactoryMethodTest {
 
         // given
         final Iterable<Integer> iterable = null;
-        final Function<Object, String> function = Functions.toStringFunction();
+        final Function<Integer, String> function = toStringFunction;
 
         // when
         from(iterable, function);
@@ -102,7 +110,7 @@ public abstract class AbstractIterableFactoryMethodTest {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
-        final Function<Object, String> function = Functions.toStringFunction();
+        final Function<Integer, String> function = toStringFunction;
 
         // when
         final Iterable<String> result = from(iterable, function);
@@ -117,7 +125,7 @@ public abstract class AbstractIterableFactoryMethodTest {
         // given
         final Iterable<Integer> iterable = null;
         final Predicate<Integer> predicate = Predicates.alwaysTrue();
-        final Function<Object, String> function = Functions.toStringFunction();
+        final Function<Integer, String> function = toStringFunction;
 
         // when
         from(iterable, predicate, function);
@@ -129,7 +137,7 @@ public abstract class AbstractIterableFactoryMethodTest {
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
         final Predicate<Integer> predicate = null;
-        final Function<Object, String> function = Functions.toStringFunction();
+        final Function<Integer, String> function = toStringFunction;
 
         // when
         from(iterable, predicate, function);
@@ -141,7 +149,7 @@ public abstract class AbstractIterableFactoryMethodTest {
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
         final Predicate<Integer> predicate = Predicates.alwaysTrue();
-        final Function<Object, String> function = null;
+        final Function<Integer, String> function = null;
 
         // when
         from(iterable, predicate, function);
@@ -153,7 +161,7 @@ public abstract class AbstractIterableFactoryMethodTest {
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
         final Predicate<Integer> predicate = Predicates.not(Predicates.equalTo(2));
-        final Function<Object, String> function = Functions.toStringFunction();
+        final Function<Integer, String> function = toStringFunction;
 
         // when
         final Iterable<String> result = from(iterable, predicate, function);
@@ -168,7 +176,7 @@ public abstract class AbstractIterableFactoryMethodTest {
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, null, 2, 3, 4);
         final Predicate<Integer> predicate = Predicates.notNull();
-        final Function<Object, String> function = Functions.toStringFunction();
+        final Function<Integer, String> function = toStringFunction;
 
         // when
         final Iterable<String> result = from(iterable, predicate, function);
@@ -177,13 +185,11 @@ public abstract class AbstractIterableFactoryMethodTest {
         assertThat(result, hasItems("1", "2", "3", "4"));
     }
 
-    protected abstract <ENTRY> Iterable<ENTRY> from(Iterable<ENTRY> iterable, Predicate<? super ENTRY> predicate);
+    protected abstract Iterable<Integer> from(Iterable<Integer> iterable, Predicate<Integer> predicate);
 
-    protected abstract <FROM_ENTRY, TO_ENTRY> Iterable<TO_ENTRY> from(Iterable<FROM_ENTRY> iterable, Function<? super FROM_ENTRY, TO_ENTRY> function);
+    protected abstract Iterable<String> from(Iterable<Integer> iterable, Function<Integer, String> function);
 
-    protected abstract <FROM_ENTRY, TO_ENTRY> Iterable<TO_ENTRY> from(Iterable<FROM_ENTRY> iterable,
-                                                                      Predicate<? super FROM_ENTRY> predicate,
-                                                                      Function<? super FROM_ENTRY, TO_ENTRY> function);
+    protected abstract Iterable<String> from(Iterable<Integer> iterable, Predicate<Integer> predicate, Function<Integer, String> function);
 
     protected abstract Class<?> getFactoryClass();
 }

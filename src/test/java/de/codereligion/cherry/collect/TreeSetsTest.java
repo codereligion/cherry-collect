@@ -19,30 +19,30 @@ import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 
 /**
- * Tests {@link de.codereligion.cherry.collect.LinkedLists} contract.
+ * Tests {@link de.codereligion.cherry.collect.TreeSets} contract.
  *
  * @author Sebastian Gr&ouml;bler
  * @since 29.12.2014
  */
-public class LinkedListsTest extends AbstractIterableFactoryMethodTest {
+public class TreeSetsTest extends AbstractIterableFactoryMethodTest {
 
     @Override
     protected Iterable<Integer> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate) {
-        return LinkedLists.from(iterable, predicate);
+        return TreeSets.from(iterable, predicate);
     }
 
     @Override
     protected Iterable<String> from(final Iterable<Integer> iterable, final Function<Integer, String> function) {
-        return LinkedLists.from(iterable, function);
+        return TreeSets.from(iterable, function);
     }
 
     @Override
     protected Iterable<String> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Function<Integer, String> function) {
-        return LinkedLists.from(iterable, predicate, function);
+        return TreeSets.from(iterable, predicate, function);
     }
 
     @Override
     protected Class<?> getFactoryClass() {
-        return LinkedLists.class;
+        return TreeSets.class;
     }
 }

@@ -27,19 +27,17 @@ import com.google.common.base.Predicate;
 public class HashSetsTest extends AbstractIterableFactoryMethodTest {
 
     @Override
-    protected <ENTRY> Iterable<ENTRY> from(final Iterable<ENTRY> iterable, final Predicate<? super ENTRY> predicate) {
+    protected Iterable<Integer> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate) {
         return HashSets.from(iterable, predicate);
     }
 
     @Override
-    protected <FROM_ENTRY, TO_ENTRY> Iterable<TO_ENTRY> from(final Iterable<FROM_ENTRY> iterable, final Function<? super FROM_ENTRY, TO_ENTRY> function) {
+    protected Iterable<String> from(final Iterable<Integer> iterable, final Function<Integer, String> function) {
         return HashSets.from(iterable, function);
     }
 
     @Override
-    protected <FROM_ENTRY, TO_ENTRY> Iterable<TO_ENTRY> from(final Iterable<FROM_ENTRY> iterable,
-                                                             final Predicate<? super FROM_ENTRY> predicate,
-                                                             final Function<? super FROM_ENTRY, TO_ENTRY> function) {
+    protected Iterable<String> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Function<Integer, String> function) {
         return HashSets.from(iterable, predicate, function);
     }
 
