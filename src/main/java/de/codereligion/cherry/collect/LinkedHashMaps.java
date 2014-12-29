@@ -17,7 +17,8 @@ package de.codereligion.cherry.collect;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
-import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Maps;
+import java.util.LinkedHashMap;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
@@ -26,9 +27,9 @@ import static com.google.common.base.Preconditions.checkArgument;
  * @author Sebastian Gr&oml;bler
  * @since 28.12.2014
  */
-public final class ArrayListMultimaps {
+public final class LinkedHashMaps {
 
-    private ArrayListMultimaps() {
+    private LinkedHashMaps() {
         throw new IllegalAccessError("This class is a utility class and must not be instantiated.");
     }
 
@@ -39,15 +40,15 @@ public final class ArrayListMultimaps {
      * @param keyFunction the function to retrieve the map key from an entry
      * @param <K>         the type of the keys of the resulting map
      * @param <V>         the type of the values of the resulting map
-     * @return a {@link com.google.common.collect.ArrayListMultimap}, might be empty
+     * @return a {@link java.util.LinkedHashMap}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <K, V> ArrayListMultimap<K, V> from(final Iterable<V> iterable, final Function<? super V, K> keyFunction) {
+    public static <K, V> LinkedHashMap<K, V> from(final Iterable<V> iterable, final Function<? super V, K> keyFunction) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
 
-        final ArrayListMultimap<K, V> map = ArrayListMultimap.create();
+        final LinkedHashMap<K, V> map = Maps.newLinkedHashMap();
 
         for (final V value : iterable) {
             final K key = keyFunction.apply(value);
@@ -61,23 +62,23 @@ public final class ArrayListMultimaps {
      * TODO
      *
      * @param iterable      the entries to be mapped
-     * @param keyFunction   the function to retrieve the key from the entry
-     * @param valueFunction the function to retrieve the value from the entry
+     * @param keyFunction   the function to retrieve the map key from an entry
+     * @param valueFunction the function to retrieve the map value from an entry
      * @param <E>           the type of the entries provided by the given {@code iterable}
      * @param <K>           the type of the keys of the resulting map
      * @param <V>           the type of the values of the resulting map
-     * @return a {@link com.google.common.collect.ArrayListMultimap}, might be empty
+     * @return a {@link java.util.LinkedHashMap}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <K, V, E> ArrayListMultimap<K, V> from(final Iterable<E> iterable,
-                                                         final Function<? super E, K> keyFunction,
-                                                         final Function<? super E, V> valueFunction) {
+    public static <E, K, V> LinkedHashMap<K, V> from(final Iterable<E> iterable,
+                                                     final Function<? super E, K> keyFunction,
+                                                     final Function<? super E, V> valueFunction) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(valueFunction != null, "valueFunction must not be null.");
 
-        final ArrayListMultimap<K, V> map = ArrayListMultimap.create();
+        final LinkedHashMap<K, V> map = Maps.newLinkedHashMap();
 
         for (final E entry : iterable) {
             final K key = keyFunction.apply(entry);
@@ -88,6 +89,7 @@ public final class ArrayListMultimaps {
         return map;
     }
 
+
     /**
      * TODO
      *
@@ -96,18 +98,16 @@ public final class ArrayListMultimaps {
      * @param keyFunction the function to retrieve the key from the entry
      * @param <K>         the type of the keys of the resulting map
      * @param <V>         the type of the values of the resulting map
-     * @return a {@link com.google.common.collect.ArrayListMultimap}, might be empty
+     * @return a {@link java.util.LinkedHashMap}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <K, V> ArrayListMultimap<K, V> from(final Iterable<V> iterable,
-                                                      final Predicate<? super V> predicate,
-                                                      final Function<? super V, K> keyFunction) {
+    public static <K, V> LinkedHashMap<K, V> from(final Iterable<V> iterable, final Predicate<? super V> predicate, final Function<? super V, K> keyFunction) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
 
-        final ArrayListMultimap<K, V> map = ArrayListMultimap.create();
+        final LinkedHashMap<K, V> map = Maps.newLinkedHashMap();
 
         for (final V entry : iterable) {
             if (predicate.apply(entry)) {
@@ -129,20 +129,20 @@ public final class ArrayListMultimaps {
      * @param <E>           the type of the entries provided by the given {@code iterable}
      * @param <K>           the type of the keys of the resulting map
      * @param <V>           the type of the values of the resulting map
-     * @return a {@link com.google.common.collect.ArrayListMultimap}, might be empty
+     * @return a {@link java.util.LinkedHashMap}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <E, K, V> ArrayListMultimap<K, V> from(final Iterable<E> iterable,
-                                                         final Predicate<? super E> predicate,
-                                                         final Function<? super E, K> keyFunction,
-                                                         final Function<? super E, V> valueFunction) {
+    public static <E, K, V> LinkedHashMap<K, V> from(final Iterable<E> iterable,
+                                                     final Predicate<? super E> predicate,
+                                                     final Function<? super E, K> keyFunction,
+                                                     final Function<? super E, V> valueFunction) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(valueFunction != null, "valueFunction must not be null.");
 
-        final ArrayListMultimap<K, V> map = ArrayListMultimap.create();
+        final LinkedHashMap<K, V> map = Maps.newLinkedHashMap();
 
         for (final E entry : iterable) {
             if (predicate.apply(entry)) {
