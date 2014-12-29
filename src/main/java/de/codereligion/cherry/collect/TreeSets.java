@@ -191,7 +191,7 @@ public final class TreeSets {
         checkArgument(function != null, "function must not be null.");
         checkArgument(comparator != null, "comparator must not be null.");
 
-        final TreeSet<T> transformed = new TreeSet<T>();
+        final TreeSet<T> transformed = new TreeSet<T>(comparator);
 
         for (final F f : iterable) {
             if (predicate.apply(f)) {

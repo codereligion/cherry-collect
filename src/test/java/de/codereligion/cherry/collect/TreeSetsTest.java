@@ -26,6 +26,7 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -35,9 +36,6 @@ import static org.junit.Assert.assertThat;
  * @since 29.12.2014
  */
 public class TreeSetsTest extends AbstractIterableFactoryMethodTest {
-
-    // TODO test that natural ordering is applied
-    // TODO test that comparator is applied
 
     @Test(expected = IllegalArgumentException.class)
     public void filteringFromMethodWithComparatorDoesNotAllowNullIterable() {
@@ -88,6 +86,36 @@ public class TreeSetsTest extends AbstractIterableFactoryMethodTest {
         // then
         assertThat(result, not(hasItem(2)));
     }
+
+    @Test
+    public void filteringFromMethodWithComparatorOrdersGivenElementsAccordingToTheirNaturalOrder() {
+
+        // given
+        final Iterable<Integer> iterable = Lists.newArrayList(3, 1, 2, 4);
+        final Predicate<Integer> predicate = Predicates.alwaysTrue();
+
+        // when
+        final Iterable<Integer> result = TreeSets.from(iterable, predicate);
+
+        // then
+        assertThat(result, contains(1, 2, 3, 4));
+    }
+
+    @Test
+    public void filteringFromMethodWithComparatorOrdersGivenElementsAccordingToTheGivenComparator() {
+
+        // given
+        final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
+        final Predicate<Integer> predicate = Predicates.alwaysTrue();
+        final Comparator<Integer> comparator = Ordering.natural().reverse();
+
+        // when
+        final Iterable<Integer> result = TreeSets.from(iterable, predicate, comparator);
+
+        // then
+        assertThat(result, contains(4, 3, 2, 1));
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void transformingFromMethodWithComparatorDoesNotAllowNullIterable() {
 
@@ -136,6 +164,35 @@ public class TreeSetsTest extends AbstractIterableFactoryMethodTest {
 
         // then
         assertThat(result, hasItems("1", "2", "3", "4"));
+    }
+
+    @Test
+    public void transformingFromMethodWithComparatorOrdersGivenElementsAccordingToTheirNaturalOrder() {
+
+        // given
+        final Iterable<Integer> iterable = Lists.newArrayList(3, 1, 2, 4);
+        final Function<Integer, String> function = ToStringFunction.toStringFunction();
+
+        // when
+        final Iterable<String> result = TreeSets.from(iterable, function);
+
+        // then
+        assertThat(result, contains("1", "2", "3", "4"));
+    }
+
+    @Test
+    public void transformingFromMethodWithComparatorOrdersGivenElementsAccordingToTheGivenComparator() {
+
+        // given
+        final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
+        final Function<Integer, String> function = ToStringFunction.toStringFunction();
+        final Comparator<String> comparator = Ordering.natural().reverse();
+
+        // when
+        final Iterable<String> result = TreeSets.from(iterable, function, comparator);
+
+        // then
+        assertThat(result, contains("4", "3", "2", "1"));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -220,6 +277,38 @@ public class TreeSetsTest extends AbstractIterableFactoryMethodTest {
 
         // then
         assertThat(result, hasItems("1", "2", "3", "4"));
+    }
+
+
+    @Test
+    public void filteringAndTransformingFromMethodWithComparatorOrdersGivenElementsAccordingToTheirNaturalOrder() {
+
+        // given
+        final Iterable<Integer> iterable = Lists.newArrayList(3, 1, 2, 4);
+        final Predicate<Integer> predicate = Predicates.alwaysTrue();
+        final Function<Integer, String> function = ToStringFunction.toStringFunction();
+
+        // when
+        final Iterable<String> result = TreeSets.from(iterable, predicate, function);
+
+        // then
+        assertThat(result, contains("1", "2", "3", "4"));
+    }
+
+    @Test
+    public void filteringAndTransformingFromMethodWithComparatorOrdersGivenElementsAccordingToTheGivenComparator() {
+
+        // given
+        final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
+        final Predicate<Integer> predicate = Predicates.alwaysTrue();
+        final Function<Integer, String> function = ToStringFunction.toStringFunction();
+        final Comparator<String> comparator = Ordering.natural().reverse();
+
+        // when
+        final Iterable<String> result = TreeSets.from(iterable, predicate, function, comparator);
+
+        // then
+        assertThat(result, contains("4", "3", "2", "1"));
     }
 
     @Override
