@@ -42,4 +42,9 @@ public class LinkedListsTest extends AbstractIterableFactoryMethodTest {
                                                              final Function<? super FROM_ENTRY, TO_ENTRY> function) {
         return LinkedLists.from(iterable, predicate, function);
     }
+
+    @Override
+    protected Class<?> getFactoryClass() {
+        return LinkedLists.class;
+    }
 }

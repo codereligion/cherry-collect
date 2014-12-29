@@ -20,6 +20,7 @@ import com.google.common.base.Functions;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Lists;
+import de.codereligion.cherry.matcher.IsNotInstantiatable;
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.hasItems;
@@ -33,6 +34,11 @@ import static org.junit.Assert.assertThat;
  * @since 28.12.2014
  */
 public abstract class AbstractIterableFactoryMethodTest {
+
+    @Test
+    public void isNotInstantiateable() {
+         assertThat(getFactoryClass(), IsNotInstantiatable.isNotInstantiatable());
+    }
 
     @Test(expected = IllegalArgumentException.class)
     public void filteringFromMethodDoesNotAllowNullIterable() {
@@ -178,4 +184,6 @@ public abstract class AbstractIterableFactoryMethodTest {
     protected abstract <FROM_ENTRY, TO_ENTRY> Iterable<TO_ENTRY> from(Iterable<FROM_ENTRY> iterable,
                                                                       Predicate<? super FROM_ENTRY> predicate,
                                                                       Function<? super FROM_ENTRY, TO_ENTRY> function);
+
+    protected abstract Class<?> getFactoryClass();
 }

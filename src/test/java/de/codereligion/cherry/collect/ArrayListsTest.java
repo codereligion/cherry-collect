@@ -42,4 +42,9 @@ public class ArrayListsTest extends AbstractIterableFactoryMethodTest {
                                                              final Function<? super FROM_ENTRY, TO_ENTRY> function) {
         return ArrayLists.from(iterable, predicate, function);
     }
+
+    @Override
+    protected Class<?> getFactoryClass() {
+        return ArrayLists.class;
+    }
 }

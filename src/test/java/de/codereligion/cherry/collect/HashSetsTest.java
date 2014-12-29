@@ -42,4 +42,9 @@ public class HashSetsTest extends AbstractIterableFactoryMethodTest {
                                                              final Function<? super FROM_ENTRY, TO_ENTRY> function) {
         return HashSets.from(iterable, predicate, function);
     }
+
+    @Override
+    protected Class<?> getFactoryClass() {
+        return HashSets.class;
+    }
 }
