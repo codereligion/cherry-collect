@@ -42,7 +42,7 @@ public class GuavaVsFastIterablesPerformanceTest {
         final Collection<Long> numbers = Lists.newArrayList(1L, 2L);
         FluentIterable.from(numbers).filter(IS_EVEN).toList().size();
         Collections2.filter(numbers, IS_EVEN).size();
-        FastIterables.filterToArrayList(numbers, IS_EVEN).size();
+        ArrayLists.from(numbers, IS_EVEN).size();
     }
 
     @Test
@@ -89,7 +89,7 @@ public class GuavaVsFastIterablesPerformanceTest {
 
                 @Override
                 public void run() {
-                    final List<Long> result = FastIterables.filterToArrayList(numbers, IS_EVEN);
+                    final List<Long> result = ArrayLists.from(numbers, IS_EVEN);
                     result.size();
                     result.size();
                     result.size();

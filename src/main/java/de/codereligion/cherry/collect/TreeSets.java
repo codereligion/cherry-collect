@@ -23,7 +23,7 @@ import java.util.TreeSet;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * TODO
+ * Provides static factory methods to create {@link java.util.TreeSet TreeSets}.
  *
  * @author Sebastian Gr&oml;bler
  * @since 28.12.2014
@@ -38,7 +38,7 @@ public final class TreeSets {
     /**
      * TODO
      *
-     * @param iterable the entries to be mapped
+     * @param iterable the entries to be transformed
      * @param function the function to transform the entries with
      * @param <F>      the type of the entries to be transformed
      * @param <T>      the type of the resulting entries
