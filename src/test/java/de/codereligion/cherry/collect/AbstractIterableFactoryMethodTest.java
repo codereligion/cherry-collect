@@ -58,6 +58,15 @@ public abstract class AbstractIterableFactoryMethodTest {
     @Test
     public void filteringFromMethodDoesFiltersOutUnwantedElements() {
 
+        // given
+        final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
+        final Predicate<Integer> predicate = Predicates.not(Predicates.equalTo(2));
+
+        // when
+        final Iterable<Integer> result = from(iterable, predicate);
+
+        // then
+        assertThat(result, not(hasItem(2)));
     }
 
     @Test(expected = IllegalArgumentException.class)
