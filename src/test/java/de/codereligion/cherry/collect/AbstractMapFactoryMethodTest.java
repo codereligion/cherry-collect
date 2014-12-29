@@ -24,6 +24,7 @@ import de.codereligion.cherry.matcher.IsNotInstantiatable;
 import java.util.Map;
 import org.junit.Test;
 import static org.hamcrest.collection.IsMapContaining.hasEntry;
+import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -184,6 +185,20 @@ public abstract class AbstractMapFactoryMethodTest {
         assertThat(result, hasEntry("4", 4));
     }
 
+    @Test
+    public void filteringFromMethodWithKeyFunctionFiltersOutUnwantedEntries() {
+
+        // given
+        final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
+        final Predicate<Integer> predicate = Predicates.not(Predicates.equalTo(2));
+        final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
+
+        // when
+        final Map<String, Integer> result = from(iterable, predicate, keyFunction);
+
+        // then
+        assertThat(result, not(hasEntry("2", 2)));
+    }
 
     @Test(expected = IllegalArgumentException.class)
     public void filteringFromMethodWithKeyFunctionAndValueFunctionDoesNotAllowNullIterable() {
@@ -253,6 +268,22 @@ public abstract class AbstractMapFactoryMethodTest {
         assertThat(result, hasEntry("2", "2"));
         assertThat(result, hasEntry("3", "3"));
         assertThat(result, hasEntry("4", "4"));
+    }
+
+    @Test
+    public void filteringFromMethodWithKeyFunctionAndValueFunctionFiltersOutUnwantedEntries() {
+
+        // given
+        final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
+        final Predicate<Integer> predicate = Predicates.not(Predicates.equalTo(2));
+        final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
+        final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
+
+        // when
+        final Map<String, String> result = from(iterable, predicate, keyFunction, valueFunction);
+
+        // then
+        assertThat(result, not(hasEntry("2", "2")));
     }
 
     protected abstract Map<String, Integer> from(Iterable<Integer> iterable, Function<Integer, String> keyFunction);
