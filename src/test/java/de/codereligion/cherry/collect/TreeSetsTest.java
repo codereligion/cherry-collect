@@ -111,6 +111,18 @@ public class TreeSetsTest extends AbstractIterableFactoryMethodTest {
         TreeSets.from(iterable, function, comparator);
     }
 
+
+    @Test(expected = IllegalArgumentException.class)
+    public void transformingFromMethodWithComparatorDoesNotAllowNullComparator() {
+
+        // given
+        final Iterable<Integer> iterable = Lists.newArrayList();
+        final Function<Integer, String> function = ToStringFunction.toStringFunction();
+        final Comparator<String> comparator = null;
+        // when
+        TreeSets.from(iterable, function, comparator);
+    }
+
     @Test
     public void transformingFromMethodWithComparatorTransformsGivenEntriesToExpectedResult() {
 
@@ -160,6 +172,19 @@ public class TreeSetsTest extends AbstractIterableFactoryMethodTest {
         final Predicate<Integer> predicate = Predicates.alwaysTrue();
         final Function<Integer, String> function = null;
         final Comparator<String> comparator = Ordering.natural().reverse();
+
+        // when
+        TreeSets.from(iterable, predicate, function, comparator);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void filteringAndTransformingFromMethodWithComparatorDoesNotAllowNullComparator() {
+
+        // given
+        final Iterable<Integer> iterable = Lists.newArrayList();
+        final Predicate<Integer> predicate = Predicates.alwaysTrue();
+        final Function<Integer, String> function = ToStringFunction.toStringFunction();
+        final Comparator<String> comparator = null;
 
         // when
         TreeSets.from(iterable, predicate, function, comparator);
