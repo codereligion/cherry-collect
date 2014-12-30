@@ -21,6 +21,8 @@ import com.google.common.collect.Collections2;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -59,7 +61,7 @@ public class GuavaVsFastIterablesPerformanceTest {
 
             final Collection<Long> numbers = createLongsUntil(numElements);
 
-            measureMillisAndPrint("FluentIterable", new Runnable() {
+            measureMillisAndPrint("FluentIterable.toList()", new Runnable() {
 
                 @Override
                 public void run() {
@@ -97,6 +99,19 @@ public class GuavaVsFastIterablesPerformanceTest {
                     result.size();
                 }
             });
+
+            measureMillisAndPrint("FluentIterable.copyInto()", new Runnable() {
+
+                @Override
+                public void run() {
+                    final List<Long> result = FluentIterable.from(numbers).filter(IS_EVEN).copyInto(new ArrayList<Long>());
+                    result.size();
+                    result.size();
+                    result.size();
+                    result.size();
+                    result.size();
+                }
+            });
         }
 
     }
@@ -106,9 +121,16 @@ public class GuavaVsFastIterablesPerformanceTest {
     }
 
     private long measureMillis(final Runnable runnable) {
-        final Stopwatch stopwatch = Stopwatch.createStarted();
-        runnable.run();
-        return stopwatch.elapsed(TimeUnit.MILLISECONDS);
+        long sum = 0;
+        final int max = 10;
+
+        for (int i = 0; i < max; i++) {
+            final Stopwatch stopwatch = Stopwatch.createStarted();
+            runnable.run();
+            sum += stopwatch.elapsed(TimeUnit.MILLISECONDS);
+        }
+        
+        return sum / max;
     }
 
     private List<Long> createLongsUntil(final long limit) {
