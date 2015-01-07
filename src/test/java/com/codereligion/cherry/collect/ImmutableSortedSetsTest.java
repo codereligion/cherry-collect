@@ -17,32 +17,51 @@ package com.codereligion.cherry.collect;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
+import java.util.Comparator;
 
 /**
- * Tests {@link ImmutableSets} contract.
+ * Tests {@link ImmutableSortedSets} contract.
  *
  * @author Sebastian Gr&ouml;bler
  * @since 29.12.2014
  */
-public class ImmutableSetsTest extends AbstractIterableFactoryTest {
+public class ImmutableSortedSetsTest extends AbstractSortedSetFactoryTest {
+
+    @Override
+    protected Iterable<Integer> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Comparator<Integer> comparator) {
+        return ImmutableSortedSets.from(iterable, predicate, comparator);
+    }
+
+    @Override
+    protected Iterable<String> from(final Iterable<Integer> iterable, final Function<Integer, String> function, final Comparator<String> comparator) {
+        return ImmutableSortedSets.from(iterable, function, comparator);
+    }
+
+    @Override
+    protected Iterable<String> from(final Iterable<Integer> iterable,
+                                    final Predicate<Integer> predicate,
+                                    final Function<Integer, String> function,
+                                    final Comparator<String> comparator) {
+        return ImmutableSortedSets.from(iterable, predicate, function, comparator);
+    }
 
     @Override
     protected Iterable<Integer> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate) {
-        return ImmutableSets.from(iterable, predicate);
+        return ImmutableSortedSets.from(iterable, predicate);
     }
 
     @Override
     protected Iterable<String> from(final Iterable<Integer> iterable, final Function<Integer, String> function) {
-        return ImmutableSets.from(iterable, function);
+        return ImmutableSortedSets.from(iterable, function);
     }
 
     @Override
     protected Iterable<String> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Function<Integer, String> function) {
-        return ImmutableSets.from(iterable, predicate, function);
+        return ImmutableSortedSets.from(iterable, predicate, function);
     }
 
     @Override
     protected Class<?> getFactoryClass() {
-        return ImmutableSets.class;
+        return ImmutableSortedSets.class;
     }
 }

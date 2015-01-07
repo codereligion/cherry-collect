@@ -24,7 +24,7 @@ import com.google.common.base.Predicate;
  * @author Sebastian Gr&ouml;bler
  * @since 29.12.2014
  */
-public class LinkedListsTest extends AbstractIterableFactoryMethodTest {
+public class LinkedListsTest extends AbstractIterableFactoryTest {
 
     @Override
     protected Iterable<Integer> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate) {

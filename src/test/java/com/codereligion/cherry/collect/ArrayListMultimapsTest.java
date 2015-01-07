@@ -25,7 +25,7 @@ import com.google.common.collect.ArrayListMultimap;
  * @author sgroebler
  * @since 29.12.2014
  */
-public class ArrayListMultimapsTest extends AbstractMultimapFactoryMethodTest {
+public class ArrayListMultimapsTest extends AbstractMultimapFactoryTest {
 
     @Override
     protected ArrayListMultimap<String, Integer> from(final Iterable<Integer> iterable, final Function<Integer, String> keyFunction) {

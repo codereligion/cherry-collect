@@ -24,7 +24,7 @@ import com.google.common.base.Predicate;
  * @author Sebastian Gr&ouml;bler
  * @since 29.12.2014
  */
-public class ImmutableListsTest extends AbstractIterableFactoryMethodTest {
+public class ImmutableListsTest extends AbstractIterableFactoryTest {
 
     @Override
     protected Iterable<Integer> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate) {

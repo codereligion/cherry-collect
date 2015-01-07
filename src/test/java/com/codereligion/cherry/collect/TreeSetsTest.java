@@ -17,17 +17,7 @@ package com.codereligion.cherry.collect;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Ordering;
-import com.codereligion.cherry.function.ToStringFunction;
 import java.util.Comparator;
-import org.junit.Test;
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.CoreMatchers.hasItems;
-import static org.hamcrest.CoreMatchers.not;
-import static org.hamcrest.Matchers.contains;
-import static org.junit.Assert.assertThat;
 
 /**
  * Tests {@link com.codereligion.cherry.collect.TreeSets} contract.
@@ -35,280 +25,25 @@ import static org.junit.Assert.assertThat;
  * @author Sebastian Gr&ouml;bler
  * @since 29.12.2014
  */
-public class TreeSetsTest extends AbstractIterableFactoryMethodTest {
+public class TreeSetsTest extends AbstractSortedSetFactoryTest {
 
-    @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithComparatorDoesNotAllowNullIterable() {
-        // given
-        final Iterable<Integer> iterable = null;
-        final Predicate<Integer> predicate = Predicates.alwaysTrue();
-        final Comparator<Integer> comparator = Ordering.natural().reverse();
 
-        // when
-        TreeSets.from(iterable, predicate, comparator);
+    @Override
+    protected Iterable<Integer> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Comparator<Integer> comparator) {
+        return TreeSets.from(iterable, predicate, comparator);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithComparatorDoesNotAllowNullPredicate() {
-
-        // given
-        final Iterable<Integer> iterable = Lists.newArrayList();
-        final Predicate<Integer> predicate = null;
-        final Comparator<Integer> comparator = Ordering.natural().reverse();
-
-        // when
-        TreeSets.from(iterable, predicate, comparator);
+    @Override
+    protected Iterable<String> from(final Iterable<Integer> iterable, final Function<Integer, String> function, final Comparator<String> comparator) {
+        return TreeSets.from(iterable, function, comparator);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithComparatorDoesNotAllowNullComparator() {
-
-        // given
-        final Iterable<Integer> iterable = Lists.newArrayList();
-        final Predicate<Integer> predicate = Predicates.alwaysTrue();
-        final Comparator<Integer> comparator = null;
-
-        // when
-        TreeSets.from(iterable, predicate, comparator);
-    }
-
-    @Test
-    public void filteringFromMethodWithComparatorDoesFiltersOutUnwantedElements() {
-
-        // given
-        final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
-        final Predicate<Integer> predicate = Predicates.not(Predicates.equalTo(2));
-        final Comparator<Integer> comparator = Ordering.natural().reverse();
-
-        // when
-        final Iterable<Integer> result = TreeSets.from(iterable, predicate, comparator);
-
-        // then
-        assertThat(result, not(hasItem(2)));
-    }
-
-    @Test
-    public void filteringFromMethodWithComparatorOrdersGivenElementsAccordingToTheirNaturalOrder() {
-
-        // given
-        final Iterable<Integer> iterable = Lists.newArrayList(3, 1, 2, 4);
-        final Predicate<Integer> predicate = Predicates.alwaysTrue();
-
-        // when
-        final Iterable<Integer> result = TreeSets.from(iterable, predicate);
-
-        // then
-        assertThat(result, contains(1, 2, 3, 4));
-    }
-
-    @Test
-    public void filteringFromMethodWithComparatorOrdersGivenElementsAccordingToTheGivenComparator() {
-
-        // given
-        final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
-        final Predicate<Integer> predicate = Predicates.alwaysTrue();
-        final Comparator<Integer> comparator = Ordering.natural().reverse();
-
-        // when
-        final Iterable<Integer> result = TreeSets.from(iterable, predicate, comparator);
-
-        // then
-        assertThat(result, contains(4, 3, 2, 1));
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void transformingFromMethodWithComparatorDoesNotAllowNullIterable() {
-
-        // given
-        final Iterable<Integer> iterable = Lists.newArrayList();
-        final Function<Integer, String> function = null;
-        final Comparator<String> comparator = Ordering.natural().reverse();
-
-        // when
-        TreeSets.from(iterable, function, comparator);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void transformingFromMethodWithComparatorDoesNotAllowNullFunction() {
-
-        // given
-        final Iterable<Integer> iterable = null;
-        final Function<Integer, String> function = ToStringFunction.toStringFunction();
-        final Comparator<String> comparator = Ordering.natural().reverse();
-        // when
-        TreeSets.from(iterable, function, comparator);
-    }
-
-
-    @Test(expected = IllegalArgumentException.class)
-    public void transformingFromMethodWithComparatorDoesNotAllowNullComparator() {
-
-        // given
-        final Iterable<Integer> iterable = Lists.newArrayList();
-        final Function<Integer, String> function = ToStringFunction.toStringFunction();
-        final Comparator<String> comparator = null;
-        // when
-        TreeSets.from(iterable, function, comparator);
-    }
-
-    @Test
-    public void transformingFromMethodWithComparatorTransformsGivenEntriesToExpectedResult() {
-
-        // given
-        final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
-        final Function<Integer, String> function = ToStringFunction.toStringFunction();
-        final Comparator<String> comparator = Ordering.natural().reverse();
-
-        // when
-        final Iterable<String> result = TreeSets.from(iterable, function, comparator);
-
-        // then
-        assertThat(result, hasItems("1", "2", "3", "4"));
-    }
-
-    @Test
-    public void transformingFromMethodWithComparatorOrdersGivenElementsAccordingToTheirNaturalOrder() {
-
-        // given
-        final Iterable<Integer> iterable = Lists.newArrayList(3, 1, 2, 4);
-        final Function<Integer, String> function = ToStringFunction.toStringFunction();
-
-        // when
-        final Iterable<String> result = TreeSets.from(iterable, function);
-
-        // then
-        assertThat(result, contains("1", "2", "3", "4"));
-    }
-
-    @Test
-    public void transformingFromMethodWithComparatorOrdersGivenElementsAccordingToTheGivenComparator() {
-
-        // given
-        final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
-        final Function<Integer, String> function = ToStringFunction.toStringFunction();
-        final Comparator<String> comparator = Ordering.natural().reverse();
-
-        // when
-        final Iterable<String> result = TreeSets.from(iterable, function, comparator);
-
-        // then
-        assertThat(result, contains("4", "3", "2", "1"));
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void filteringAndTransformingFromMethodWithComparatorDoesNotAllowNullIterable() {
-
-        // given
-        final Iterable<Integer> iterable = null;
-        final Predicate<Integer> predicate = Predicates.alwaysTrue();
-        final Function<Integer, String> function = ToStringFunction.toStringFunction();
-        final Comparator<String> comparator = Ordering.natural().reverse();
-
-        // when
-        TreeSets.from(iterable, predicate, function, comparator);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void filteringAndTransformingFromMethodWithComparatorDoesNotAllowNullPredicate() {
-
-        // given
-        final Iterable<Integer> iterable = Lists.newArrayList();
-        final Predicate<Integer> predicate = null;
-        final Function<Integer, String> function = ToStringFunction.toStringFunction();
-        final Comparator<String> comparator = Ordering.natural().reverse();
-
-        // when
-        TreeSets.from(iterable, predicate, function, comparator);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void filteringAndTransformingFromMethodWithComparatorDoesNotAllowNullFunction() {
-
-        // given
-        final Iterable<Integer> iterable = Lists.newArrayList();
-        final Predicate<Integer> predicate = Predicates.alwaysTrue();
-        final Function<Integer, String> function = null;
-        final Comparator<String> comparator = Ordering.natural().reverse();
-
-        // when
-        TreeSets.from(iterable, predicate, function, comparator);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void filteringAndTransformingFromMethodWithComparatorDoesNotAllowNullComparator() {
-
-        // given
-        final Iterable<Integer> iterable = Lists.newArrayList();
-        final Predicate<Integer> predicate = Predicates.alwaysTrue();
-        final Function<Integer, String> function = ToStringFunction.toStringFunction();
-        final Comparator<String> comparator = null;
-
-        // when
-        TreeSets.from(iterable, predicate, function, comparator);
-    }
-
-    @Test
-    public void filteringAndTransformingFromMethodWithComparatorFiltersOutUnwantedElements() {
-
-        // given
-        final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
-        final Predicate<Integer> predicate = Predicates.not(Predicates.equalTo(2));
-        final Function<Integer, String> function = ToStringFunction.toStringFunction();
-        final Comparator<String> comparator = Ordering.natural().reverse();
-
-        // when
-        final Iterable<String> result = TreeSets.from(iterable, predicate, function, comparator);
-
-        // then
-        assertThat(result, not(hasItem("2")));
-    }
-
-    @Test
-    public void filteringAndTransformingFromMethodWithComparatorTransformsGivenEntriesToExpectedResult() {
-
-        // given
-        final Iterable<Integer> iterable = Lists.newArrayList(1, null, 2, 3, 4);
-        final Predicate<Integer> predicate = Predicates.notNull();
-        final Function<Integer, String> function = ToStringFunction.toStringFunction();
-        final Comparator<String> comparator = Ordering.natural().reverse();
-
-        // when
-        final Iterable<String> result = TreeSets.from(iterable, predicate, function, comparator);
-
-        // then
-        assertThat(result, hasItems("1", "2", "3", "4"));
-    }
-
-
-    @Test
-    public void filteringAndTransformingFromMethodWithComparatorOrdersGivenElementsAccordingToTheirNaturalOrder() {
-
-        // given
-        final Iterable<Integer> iterable = Lists.newArrayList(3, 1, 2, 4);
-        final Predicate<Integer> predicate = Predicates.alwaysTrue();
-        final Function<Integer, String> function = ToStringFunction.toStringFunction();
-
-        // when
-        final Iterable<String> result = TreeSets.from(iterable, predicate, function);
-
-        // then
-        assertThat(result, contains("1", "2", "3", "4"));
-    }
-
-    @Test
-    public void filteringAndTransformingFromMethodWithComparatorOrdersGivenElementsAccordingToTheGivenComparator() {
-
-        // given
-        final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
-        final Predicate<Integer> predicate = Predicates.alwaysTrue();
-        final Function<Integer, String> function = ToStringFunction.toStringFunction();
-        final Comparator<String> comparator = Ordering.natural().reverse();
-
-        // when
-        final Iterable<String> result = TreeSets.from(iterable, predicate, function, comparator);
-
-        // then
-        assertThat(result, contains("4", "3", "2", "1"));
+    @Override
+    protected Iterable<String> from(final Iterable<Integer> iterable,
+                                    final Predicate<Integer> predicate,
+                                    final Function<Integer, String> function,
+                                    final Comparator<String> comparator) {
+        return TreeSets.from(iterable, predicate, function, comparator);
     }
 
     @Override

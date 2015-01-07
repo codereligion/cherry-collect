@@ -25,7 +25,7 @@ import com.google.common.collect.HashMultimap;
  * @author sgroebler
  * @since 29.12.2014
  */
-public class HashMultimapsTest extends AbstractMultimapFactoryMethodTest {
+public class HashMultimapsTest extends AbstractMultimapFactoryTest {
 
     @Override
     protected HashMultimap<String, Integer> from(final Iterable<Integer> iterable, final Function<Integer, String> keyFunction) {

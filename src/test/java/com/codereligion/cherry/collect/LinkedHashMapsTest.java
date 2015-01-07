@@ -25,7 +25,7 @@ import java.util.Map;
  * @author sgroebler
  * @since 29.12.2014
  */
-public class LinkedHashMapsTest extends AbstractMapFactoryMethodTest {
+public class LinkedHashMapsTest extends AbstractMapFactoryTest {
 
     @Override
     protected Map<String, Integer> from(final Iterable<Integer> iterable, final Function<Integer, String> keyFunction) {

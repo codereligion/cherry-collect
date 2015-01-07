@@ -15,12 +15,12 @@
  */
 package com.codereligion.cherry.collect;
 
+import com.codereligion.cherry.function.ToStringFunction;
+import com.codereligion.cherry.matcher.IsNotInstantiatable;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Lists;
-import com.codereligion.cherry.function.ToStringFunction;
-import com.codereligion.cherry.matcher.IsNotInstantiatable;
 import org.junit.Test;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.hasItems;
@@ -33,7 +33,7 @@ import static org.junit.Assert.assertThat;
  * @author Sebastian Gr&ouml;bler
  * @since 28.12.2014
  */
-public abstract class AbstractIterableFactoryMethodTest {
+public abstract class AbstractIterableFactoryTest {
 
     @Test
     public void isNotInstantiateable() {

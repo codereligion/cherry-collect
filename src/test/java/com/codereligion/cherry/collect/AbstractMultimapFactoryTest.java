@@ -19,11 +19,11 @@ import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.base.Predicates;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Multimap;
 import com.codereligion.cherry.function.ToStringFunction;
 import com.codereligion.cherry.matcher.IsNotInstantiatable;
-import java.util.Map;
 import org.junit.Test;
-import static org.hamcrest.collection.IsMapContaining.hasEntry;
+import static com.codereligion.cherry.matcher.IsMultimapContaining.hasEntry;
 import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertThat;
 
@@ -33,7 +33,9 @@ import static org.junit.Assert.assertThat;
  * @author Sebastian Gr&ouml;bler
  * @since 29.12.2014
  */
-public abstract class AbstractMapFactoryMethodTest {
+public abstract class AbstractMultimapFactoryTest {
+
+    // TODO test multi map functionality
 
     @Test
     public void isNotInstantiateable() {
@@ -69,7 +71,7 @@ public abstract class AbstractMapFactoryMethodTest {
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
 
         // when
-        final Map<String, Integer> result = from(iterable, keyFunction);
+        final Multimap<String, Integer> result = from(iterable, keyFunction);
 
         // then
         assertThat(result, hasEntry("1", 1));
@@ -77,7 +79,6 @@ public abstract class AbstractMapFactoryMethodTest {
         assertThat(result, hasEntry("3", 3));
         assertThat(result, hasEntry("4", 4));
     }
-
 
     @Test(expected = IllegalArgumentException.class)
     public void fromMethodWithKeyFunctionAndValueFunctionDoesNotAllowNullIterable() {
@@ -123,7 +124,7 @@ public abstract class AbstractMapFactoryMethodTest {
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        final Map<String, String> result = from(iterable, keyFunction, valueFunction);
+        final Multimap<String, String> result = from(iterable, keyFunction, valueFunction);
 
         // then
         assertThat(result, hasEntry("1", "1"));
@@ -176,7 +177,7 @@ public abstract class AbstractMapFactoryMethodTest {
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
 
         // when
-        final Map<String, Integer> result = from(iterable, predicate, keyFunction);
+        final Multimap<String, Integer> result = from(iterable, predicate, keyFunction);
 
         // then
         assertThat(result, hasEntry("1", 1));
@@ -194,7 +195,7 @@ public abstract class AbstractMapFactoryMethodTest {
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
 
         // when
-        final Map<String, Integer> result = from(iterable, predicate, keyFunction);
+        final Multimap<String, Integer> result = from(iterable, predicate, keyFunction);
 
         // then
         assertThat(result, not(hasEntry("2", 2)));
@@ -218,7 +219,8 @@ public abstract class AbstractMapFactoryMethodTest {
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
         final Predicate<Integer> predicate = null;
-        final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();;
+        final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
+        ;
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
@@ -261,7 +263,7 @@ public abstract class AbstractMapFactoryMethodTest {
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        final Map<String, String> result = from(iterable, predicate, keyFunction, valueFunction);
+        final Multimap<String, String> result = from(iterable, predicate, keyFunction, valueFunction);
 
         // then
         assertThat(result, hasEntry("1", "1"));
@@ -280,19 +282,24 @@ public abstract class AbstractMapFactoryMethodTest {
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        final Map<String, String> result = from(iterable, predicate, keyFunction, valueFunction);
+        final Multimap<String, String> result = from(iterable, predicate, keyFunction, valueFunction);
 
         // then
         assertThat(result, not(hasEntry("2", "2")));
     }
 
-    protected abstract Map<String, Integer> from(Iterable<Integer> iterable, Function<Integer, String> keyFunction);
+    protected abstract Multimap<String, Integer> from(Iterable<Integer> iterable, Function<Integer, String> keyFunction);
 
-    protected abstract Map<String, String> from(Iterable<Integer> iterable, Function<Integer, String> keyFunction, Function<Integer, String> valueFunction);
+    protected abstract Multimap<String, String> from(Iterable<Integer> iterable,
+                                                     Function<Integer, String> keyFunction,
+                                                     Function<Integer, String> valueFunction);
 
-    protected abstract Map<String, Integer> from(Iterable<Integer> iterable, Predicate<Integer> predicate, Function<Integer, String> keyFunction);
+    protected abstract Multimap<String, Integer> from(Iterable<Integer> iterable, Predicate<Integer> predicate, Function<Integer, String> keyFunction);
 
-    protected abstract Map<String, String> from(Iterable<Integer> iterable, Predicate<Integer> predicate, Function<Integer, String> keyFunction, Function<Integer, String> valueFunction);
+    protected abstract Multimap<String, String> from(Iterable<Integer> iterable,
+                                                     Predicate<Integer> predicate,
+                                                     Function<Integer, String> keyFunction,
+                                                     Function<Integer, String> valueFunction);
 
     protected abstract Class<?> getFactoryClass();
 }
