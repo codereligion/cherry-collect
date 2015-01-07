@@ -19,7 +19,6 @@ import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Sets;
 import java.util.HashSet;
-import java.util.Set;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
@@ -68,12 +67,12 @@ public final class HashSets {
      * @return a {@link java.util.HashSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <E> Set<E> from(final Iterable<E> iterable, final Predicate<? super E> predicate) {
+    public static <E> HashSet<E> from(final Iterable<E> iterable, final Predicate<? super E> predicate) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
 
-        final Set<E> filtered = Sets.newHashSet();
+        final HashSet<E> filtered = Sets.newHashSet();
 
         for (final E e : iterable) {
             if (predicate.apply(e)) {

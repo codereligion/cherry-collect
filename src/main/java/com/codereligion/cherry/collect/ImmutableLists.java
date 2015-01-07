@@ -17,18 +17,18 @@ package com.codereligion.cherry.collect;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
-import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.ImmutableList;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * Provides static factory methods to create {@link com.google.common.collect.ImmutableSet ImmutableSets}.
+ * Provides static factory methods to create {@link com.google.common.collect.ImmutableList ImmutableLists}.
  *
  * @author Sebastian Gr&oml;bler
  * @since 28.12.2014
  */
-public final class ImmutableSets {
+public final class ImmutableLists {
 
-    private ImmutableSets() {
+    private ImmutableLists() {
         throw new IllegalAccessError("This class is a utility class and must not be instantiated.");
     }
 
@@ -39,15 +39,15 @@ public final class ImmutableSets {
      * @param function the function to transform the entries with
      * @param <F>      the type of the entries to be transformed
      * @param <T>      the type of the resulting entries
-     * @return a {@link com.google.common.collect.ImmutableSet}, might be empty
+     * @return a {@link com.google.common.collect.ImmutableList}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <F, T> ImmutableSet<T> from(final Iterable<F> iterable, final Function<? super F, T> function) {
+    public static <F, T> ImmutableList<T> from(final Iterable<F> iterable, final Function<? super F, T> function) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final ImmutableSet.Builder<T> builder = ImmutableSet.builder();
+        final ImmutableList.Builder<T> builder = ImmutableList.builder();
 
         for (final F f : iterable) {
             final T t = function.apply(f);
@@ -63,15 +63,15 @@ public final class ImmutableSets {
      * @param iterable  the entries to be filtered
      * @param predicate the predicate to filter the entries with
      * @param <E>       the type of the entries to be filtered
-     * @return a {@link com.google.common.collect.ImmutableSet}, might be empty
+     * @return a {@link com.google.common.collect.ImmutableList}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <E> ImmutableSet<E> from(final Iterable<E> iterable, final Predicate<? super E> predicate) {
+    public static <E> ImmutableList<E> from(final Iterable<E> iterable, final Predicate<? super E> predicate) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
 
-        final ImmutableSet.Builder<E> builder = ImmutableSet.builder();
+        final ImmutableList.Builder<E> builder = ImmutableList.builder();
 
         for (final E e : iterable) {
             if (predicate.apply(e)) {
@@ -90,16 +90,16 @@ public final class ImmutableSets {
      * @param function  the function to transform the entries with
      * @param <F>       the type of the entries to be transformed
      * @param <T>       the type of the resulting entries
-     * @return a {@link com.google.common.collect.ImmutableSet}, might be empty
+     * @return a {@link com.google.common.collect.ImmutableList}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <F, T> ImmutableSet<T> from(final Iterable<F> iterable, final Predicate<? super F> predicate, final Function<? super F, T> function) {
+    public static <F, T> ImmutableList<T> from(final Iterable<F> iterable, final Predicate<? super F> predicate, final Function<? super F, T> function) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final ImmutableSet.Builder<T> builder = ImmutableSet.builder();
+        final ImmutableList.Builder<T> builder = ImmutableList.builder();
 
         for (final F f : iterable) {
             if (predicate.apply(f)) {
