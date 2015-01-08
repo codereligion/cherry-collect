@@ -34,7 +34,6 @@ public final class TreeSets {
         throw new IllegalAccessError("This class is a utility class and must not be instantiated.");
     }
 
-
     /**
      * TODO
      *

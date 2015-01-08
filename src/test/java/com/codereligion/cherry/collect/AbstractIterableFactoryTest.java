@@ -62,7 +62,7 @@ public abstract class AbstractIterableFactoryTest {
     }
 
     @Test
-    public void filteringFromMethodDoesFiltersOutUnwantedEntries() {
+    public void filteringFromMethodFiltersOutUnwantedEntries() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);

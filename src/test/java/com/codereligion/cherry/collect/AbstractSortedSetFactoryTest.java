@@ -73,7 +73,7 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
     }
 
     @Test
-    public void filteringFromMethodWithComparatorDoesFiltersOutUnwantedElements() {
+    public void filteringFromMethodWithComparatorFiltersOutUnwantedElements() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -312,7 +312,6 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
         // then
         assertThat(result, contains("4", "3", "2", "1"));
     }
-
 
     protected abstract Iterable<Integer> from(Iterable<Integer> iterable, Predicate<Integer> predicate, Comparator<Integer> comparator);
 

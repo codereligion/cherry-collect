@@ -78,9 +78,8 @@ public abstract class AbstractMapFactoryTest {
         assertThat(result, hasEntry("4", 4));
     }
 
-
     @Test(expected = IllegalArgumentException.class)
-    public void fromMethodWithKeyFunctionAndValueFunctionDoesNotAllowNullIterable() {
+    public void fromMethodWithKeyAndValueFunctionDoesNotAllowNullIterable() {
         // given
         final Iterable<Integer> iterable = null;
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
@@ -91,7 +90,7 @@ public abstract class AbstractMapFactoryTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void fromMethodWithKeyFunctionAndValueFunctionDoesNotAllowNullKeyFunction() {
+    public void fromMethodWithKeyAndValueFunctionDoesNotAllowNullKeyFunction() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -103,7 +102,7 @@ public abstract class AbstractMapFactoryTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void fromMethodWithKeyFunctionAndValueFunctionDoesNotAllowNullValueFunction() {
+    public void fromMethodWithKeyAndValueFunctionDoesNotAllowNullValueFunction() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -115,7 +114,7 @@ public abstract class AbstractMapFactoryTest {
     }
 
     @Test
-    public void fromMethodWithKeyFunctionAndValueFunctionTransformsGivenEntriesToExpectedResult() {
+    public void fromMethodWithKeyAndValueFunctionTransformsGivenEntriesToExpectedResult() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -201,7 +200,7 @@ public abstract class AbstractMapFactoryTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithKeyFunctionAndValueFunctionDoesNotAllowNullIterable() {
+    public void filteringFromMethodWithKeyAndValueFunctionDoesNotAllowNullIterable() {
         // given
         final Iterable<Integer> iterable = null;
         final Predicate<Integer> predicate = Predicates.alwaysTrue();
@@ -213,7 +212,7 @@ public abstract class AbstractMapFactoryTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithKeyFunctionAndValueFunctionDoesNotAllowNullPredicate() {
+    public void filteringFromMethodWithKeyAndValueFunctionDoesNotAllowNullPredicate() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -226,7 +225,7 @@ public abstract class AbstractMapFactoryTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithKeyFunctionAndValueFunctionDoesNotAllowNullKeyFunction() {
+    public void filteringFromMethodWithKeyAndValueFunctionDoesNotAllowNullKeyFunction() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -239,7 +238,7 @@ public abstract class AbstractMapFactoryTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithKeyFunctionAndValueFunctionDoesNotAllowNullValueFunction() {
+    public void filteringFromMethodWithKeyAndValueFunctionDoesNotAllowNullValueFunction() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -252,7 +251,7 @@ public abstract class AbstractMapFactoryTest {
     }
 
     @Test
-    public void filteringFromMethodWithKeyFunctionAndValueFunctionTransformsGivenEntriesToExpectedResult() {
+    public void filteringFromMethodWithKeyAndValueFunctionTransformsGivenEntriesToExpectedResult() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -271,7 +270,7 @@ public abstract class AbstractMapFactoryTest {
     }
 
     @Test
-    public void filteringFromMethodWithKeyFunctionAndValueFunctionFiltersOutUnwantedEntries() {
+    public void filteringFromMethodWithKeyAndValueFunctionFiltersOutUnwantedEntries() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
