@@ -76,7 +76,7 @@ public final class TreeMaps {
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(comparator != null, "comparator must not be null.");
 
-        final TreeMap<K, V> map = Maps.newTreeMap(comparator);
+        final TreeMap<K, V> map = new TreeMap<K, V>(comparator);
 
         for (final V value : iterable) {
             final K key = keyFunction.apply(value);
@@ -140,7 +140,7 @@ public final class TreeMaps {
         checkArgument(valueFunction != null, "valueFunction must not be null.");
         checkArgument(comparator != null, "comparator must not be null.");
 
-        final TreeMap<K, V> map = Maps.newTreeMap(comparator);
+        final TreeMap<K, V> map = new TreeMap<K, V>(comparator);
 
         for (final E entry : iterable) {
             final K key = keyFunction.apply(entry);
@@ -203,7 +203,7 @@ public final class TreeMaps {
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(comparator != null, "comparator must not be null.");
 
-        final TreeMap<K, V> map = Maps.newTreeMap(comparator);
+        final TreeMap<K, V> map = new TreeMap<K, V>(comparator);
 
         for (final V entry : iterable) {
             if (predicate.apply(entry)) {
@@ -277,7 +277,7 @@ public final class TreeMaps {
         checkArgument(valueFunction != null, "valueFunction must not be null.");
         checkArgument(comparator != null, "comparator must not be null.");
 
-        final TreeMap<K, V> map = Maps.newTreeMap(comparator);
+        final TreeMap<K, V> map = new TreeMap<K, V>(comparator);
 
         for (final E entry : iterable) {
             if (predicate.apply(entry)) {
