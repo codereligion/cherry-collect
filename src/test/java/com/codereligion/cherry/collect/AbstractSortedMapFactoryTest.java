@@ -137,10 +137,11 @@ public abstract class AbstractSortedMapFactoryTest extends AbstractMapFactoryTes
         // given
         final Iterable<Integer> iterable = null;
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
+        final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
         final Comparator<String> comparator = Ordering.natural().reverse();
 
         // when
-        from(iterable, keyFunction, comparator);
+        from(iterable, keyFunction, valueFunction, comparator);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -350,10 +351,11 @@ public abstract class AbstractSortedMapFactoryTest extends AbstractMapFactoryTes
         final Iterable<Integer> iterable = null;
         final Predicate<Integer> predicate = Predicates.alwaysTrue();
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
+        final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
         final Comparator<String> comparator = Ordering.natural().reverse();
 
         // when
-        from(iterable, predicate, keyFunction, comparator);
+        from(iterable, predicate, keyFunction, valueFunction, comparator);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -362,10 +364,11 @@ public abstract class AbstractSortedMapFactoryTest extends AbstractMapFactoryTes
         final Iterable<Integer> iterable = Lists.newArrayList();
         final Predicate<Integer> predicate = null;
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
+        final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
         final Comparator<String> comparator = Ordering.natural().reverse();
 
         // when
-        from(iterable, predicate, keyFunction, comparator);
+        from(iterable, predicate, keyFunction, valueFunction, comparator);
     }
 
     @Test(expected = IllegalArgumentException.class)
