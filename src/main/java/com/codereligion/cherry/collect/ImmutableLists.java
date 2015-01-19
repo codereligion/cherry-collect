@@ -42,7 +42,7 @@ public final class ImmutableLists {
      * @return a {@link com.google.common.collect.ImmutableList}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <F, T> ImmutableList<T> from(final Iterable<F> iterable, final Function<? super F, T> function) {
+    public static <F, T> ImmutableList<T> createFrom(final Iterable<F> iterable, final Function<? super F, T> function) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(function != null, "function must not be null.");
@@ -66,7 +66,7 @@ public final class ImmutableLists {
      * @return a {@link com.google.common.collect.ImmutableList}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <E> ImmutableList<E> from(final Iterable<E> iterable, final Predicate<? super E> predicate) {
+    public static <E> ImmutableList<E> createFrom(final Iterable<E> iterable, final Predicate<? super E> predicate) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
@@ -93,7 +93,7 @@ public final class ImmutableLists {
      * @return a {@link com.google.common.collect.ImmutableList}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <F, T> ImmutableList<T> from(final Iterable<F> iterable, final Predicate<? super F> predicate, final Function<? super F, T> function) {
+    public static <F, T> ImmutableList<T> createFrom(final Iterable<F> iterable, final Predicate<? super F> predicate, final Function<? super F, T> function) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");

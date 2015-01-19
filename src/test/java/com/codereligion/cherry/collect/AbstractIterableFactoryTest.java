@@ -41,78 +41,78 @@ public abstract class AbstractIterableFactoryTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodDoesNotAllowNullIterable() {
+    public void filteringCreateFromDoesNotAllowNullIterable() {
         // given
         final Iterable<Integer> iterable = null;
         final Predicate<Integer> predicate = Predicates.alwaysTrue();
 
         // when
-        from(iterable, predicate);
+        createFrom(iterable, predicate);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodDoesNotAllowNullPredicate() {
+    public void filteringCreateFromDoesNotAllowNullPredicate() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
         final Predicate<Integer> predicate = null;
 
         // when
-        from(iterable, predicate);
+        createFrom(iterable, predicate);
     }
 
     @Test
-    public void filteringFromMethodFiltersOutUnwantedEntries() {
+    public void filteringCreateFromFiltersOutUnwantedEntries() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
         final Predicate<Integer> predicate = Predicates.not(Predicates.equalTo(2));
 
         // when
-        final Iterable<Integer> result = from(iterable, predicate);
+        final Iterable<Integer> result = createFrom(iterable, predicate);
 
         // then
         assertThat(result, not(hasItem(2)));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void transformingFromMethodDoesNotAllowNullIterable() {
+    public void transformingCreateFromDoesNotAllowNullIterable() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
         final Function<Integer, String> function = null;
 
         // when
-        from(iterable, function);
+        createFrom(iterable, function);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void transformingFromMethodDoesNotAllowNullFunction() {
+    public void transformingCreateFromDoesNotAllowNullFunction() {
 
         // given
         final Iterable<Integer> iterable = null;
         final Function<Integer, String> function = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, function);
+        createFrom(iterable, function);
     }
 
     @Test
-    public void transformingFromMethodTransformsGivenEntriesToExpectedResult() {
+    public void transformingCreateFromTransformsGivenEntriesToExpectedResult() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
         final Function<Integer, String> function = ToStringFunction.toStringFunction();
 
         // when
-        final Iterable<String> result = from(iterable, function);
+        final Iterable<String> result = createFrom(iterable, function);
 
         // then
         assertThat(result, hasItems("1", "2", "3", "4"));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringAndTransformingFromMethodDoesNotAllowNullIterable() {
+    public void filteringAndTransformingCreateFromDoesNotAllowNullIterable() {
 
         // given
         final Iterable<Integer> iterable = null;
@@ -120,11 +120,11 @@ public abstract class AbstractIterableFactoryTest {
         final Function<Integer, String> function = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, predicate, function);
+        createFrom(iterable, predicate, function);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringAndTransformingFromMethodDoesNotAllowNullPredicate() {
+    public void filteringAndTransformingCreateFromDoesNotAllowNullPredicate() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -132,11 +132,11 @@ public abstract class AbstractIterableFactoryTest {
         final Function<Integer, String> function = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, predicate, function);
+        createFrom(iterable, predicate, function);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringAndTransformingFromMethodDoesNotAllowNullFunction() {
+    public void filteringAndTransformingCreateFromDoesNotAllowNullFunction() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -144,11 +144,11 @@ public abstract class AbstractIterableFactoryTest {
         final Function<Integer, String> function = null;
 
         // when
-        from(iterable, predicate, function);
+        createFrom(iterable, predicate, function);
     }
 
     @Test
-    public void filteringAndTransformingFromMethodFiltersOutUnwantedEntries() {
+    public void filteringAndTransformingCreateFromFiltersOutUnwantedEntries() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -156,14 +156,14 @@ public abstract class AbstractIterableFactoryTest {
         final Function<Integer, String> function = ToStringFunction.toStringFunction();
 
         // when
-        final Iterable<String> result = from(iterable, predicate, function);
+        final Iterable<String> result = createFrom(iterable, predicate, function);
 
         // then
         assertThat(result, not(hasItem("2")));
     }
 
     @Test
-    public void filteringAndTransformingFromMethodTransformsGivenEntriesToExpectedResult() {
+    public void filteringAndTransformingCreateFromTransformsGivenEntriesToExpectedResult() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, null, 2, 3, 4);
@@ -171,17 +171,17 @@ public abstract class AbstractIterableFactoryTest {
         final Function<Integer, String> function = ToStringFunction.toStringFunction();
 
         // when
-        final Iterable<String> result = from(iterable, predicate, function);
+        final Iterable<String> result = createFrom(iterable, predicate, function);
 
         // then
         assertThat(result, hasItems("1", "2", "3", "4"));
     }
 
-    protected abstract Iterable<Integer> from(Iterable<Integer> iterable, Predicate<Integer> predicate);
+    protected abstract Iterable<Integer> createFrom(Iterable<Integer> iterable, Predicate<Integer> predicate);
 
-    protected abstract Iterable<String> from(Iterable<Integer> iterable, Function<Integer, String> function);
+    protected abstract Iterable<String> createFrom(Iterable<Integer> iterable, Function<Integer, String> function);
 
-    protected abstract Iterable<String> from(Iterable<Integer> iterable, Predicate<Integer> predicate, Function<Integer, String> function);
+    protected abstract Iterable<String> createFrom(Iterable<Integer> iterable, Predicate<Integer> predicate, Function<Integer, String> function);
 
     protected abstract Class<?> getFactoryClass();
 }

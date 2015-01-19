@@ -41,35 +41,35 @@ public abstract class AbstractMapFactoryTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void fromMethodWithKeyFunctionDoesNotAllowNullIterable() {
+    public void createFromWithKeyFunctionDoesNotAllowNullIterable() {
         // given
         final Iterable<Integer> iterable = null;
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, keyFunction);
+        createFrom(iterable, keyFunction);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void fromMethodWithKeyFunctionDoesNotAllowNullKeyFunction() {
+    public void createFromWithKeyFunctionDoesNotAllowNullKeyFunction() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
         final Function<Integer, String> keyFunction = null;
 
         // when
-        from(iterable, keyFunction);
+        createFrom(iterable, keyFunction);
     }
 
     @Test
-    public void fromMethodWithKeyFunctionTransformsGivenEntriesToExpectedResult() {
+    public void createFromWithKeyFunctionTransformsGivenEntriesToExpectedResult() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
 
         // when
-        final Map<String, Integer> result = from(iterable, keyFunction);
+        final Map<String, Integer> result = createFrom(iterable, keyFunction);
 
         // then
         assertThat(result, hasEntry("1", 1));
@@ -79,18 +79,18 @@ public abstract class AbstractMapFactoryTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void fromMethodWithKeyAndValueFunctionDoesNotAllowNullIterable() {
+    public void createFromWithKeyAndValueFunctionDoesNotAllowNullIterable() {
         // given
         final Iterable<Integer> iterable = null;
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, keyFunction, valueFunction);
+        createFrom(iterable, keyFunction, valueFunction);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void fromMethodWithKeyAndValueFunctionDoesNotAllowNullKeyFunction() {
+    public void createFromWithKeyAndValueFunctionDoesNotAllowNullKeyFunction() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -98,11 +98,11 @@ public abstract class AbstractMapFactoryTest {
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, keyFunction, valueFunction);
+        createFrom(iterable, keyFunction, valueFunction);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void fromMethodWithKeyAndValueFunctionDoesNotAllowNullValueFunction() {
+    public void createFromWithKeyAndValueFunctionDoesNotAllowNullValueFunction() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -110,11 +110,11 @@ public abstract class AbstractMapFactoryTest {
         final Function<Integer, String> valueFunction = null;
 
         // when
-        from(iterable, keyFunction, valueFunction);
+        createFrom(iterable, keyFunction, valueFunction);
     }
 
     @Test
-    public void fromMethodWithKeyAndValueFunctionTransformsGivenEntriesToExpectedResult() {
+    public void createFromWithKeyAndValueFunctionTransformsGivenEntriesToExpectedResult() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -122,7 +122,7 @@ public abstract class AbstractMapFactoryTest {
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        final Map<String, String> result = from(iterable, keyFunction, valueFunction);
+        final Map<String, String> result = createFrom(iterable, keyFunction, valueFunction);
 
         // then
         assertThat(result, hasEntry("1", "1"));
@@ -132,18 +132,18 @@ public abstract class AbstractMapFactoryTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithKeyFunctionDoesNotAllowNullIterable() {
+    public void filteringCreateFromWithKeyFunctionDoesNotAllowNullIterable() {
         // given
         final Iterable<Integer> iterable = null;
         final Predicate<Integer> predicate = Predicates.alwaysTrue();
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, predicate, keyFunction);
+        createFrom(iterable, predicate, keyFunction);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithKeyFunctionDoesNotAllowNullPredicate() {
+    public void filteringCreateFromWithKeyFunctionDoesNotAllowNullPredicate() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -151,11 +151,11 @@ public abstract class AbstractMapFactoryTest {
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, predicate, keyFunction);
+        createFrom(iterable, predicate, keyFunction);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithKeyFunctionDoesNotAllowNullKeyFunction() {
+    public void filteringCreateFromWithKeyFunctionDoesNotAllowNullKeyFunction() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -163,11 +163,11 @@ public abstract class AbstractMapFactoryTest {
         final Function<Integer, String> keyFunction = null;
 
         // when
-        from(iterable, predicate, keyFunction);
+        createFrom(iterable, predicate, keyFunction);
     }
 
     @Test
-    public void filteringFromMethodWithKeyFunctionTransformsGivenEntriesToExpectedResult() {
+    public void filteringCreateFromWithKeyFunctionTransformsGivenEntriesToExpectedResult() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -175,7 +175,7 @@ public abstract class AbstractMapFactoryTest {
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
 
         // when
-        final Map<String, Integer> result = from(iterable, predicate, keyFunction);
+        final Map<String, Integer> result = createFrom(iterable, predicate, keyFunction);
 
         // then
         assertThat(result, hasEntry("1", 1));
@@ -185,7 +185,7 @@ public abstract class AbstractMapFactoryTest {
     }
 
     @Test
-    public void filteringFromMethodWithKeyFunctionFiltersOutUnwantedEntries() {
+    public void filteringCreateFromWithKeyFunctionFiltersOutUnwantedEntries() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -193,14 +193,14 @@ public abstract class AbstractMapFactoryTest {
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
 
         // when
-        final Map<String, Integer> result = from(iterable, predicate, keyFunction);
+        final Map<String, Integer> result = createFrom(iterable, predicate, keyFunction);
 
         // then
         assertThat(result, not(hasEntry("2", 2)));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithKeyAndValueFunctionDoesNotAllowNullIterable() {
+    public void filteringCreateFromWithKeyAndValueFunctionDoesNotAllowNullIterable() {
         // given
         final Iterable<Integer> iterable = null;
         final Predicate<Integer> predicate = Predicates.alwaysTrue();
@@ -208,11 +208,11 @@ public abstract class AbstractMapFactoryTest {
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, predicate, keyFunction, valueFunction);
+        createFrom(iterable, predicate, keyFunction, valueFunction);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithKeyAndValueFunctionDoesNotAllowNullPredicate() {
+    public void filteringCreateFromWithKeyAndValueFunctionDoesNotAllowNullPredicate() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -221,11 +221,11 @@ public abstract class AbstractMapFactoryTest {
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, predicate, keyFunction, valueFunction);
+        createFrom(iterable, predicate, keyFunction, valueFunction);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithKeyAndValueFunctionDoesNotAllowNullKeyFunction() {
+    public void filteringCreateFromWithKeyAndValueFunctionDoesNotAllowNullKeyFunction() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -234,11 +234,11 @@ public abstract class AbstractMapFactoryTest {
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, predicate, keyFunction, valueFunction);
+        createFrom(iterable, predicate, keyFunction, valueFunction);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithKeyAndValueFunctionDoesNotAllowNullValueFunction() {
+    public void filteringCreateFromWithKeyAndValueFunctionDoesNotAllowNullValueFunction() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -247,11 +247,11 @@ public abstract class AbstractMapFactoryTest {
         final Function<Integer, String> valueFunction = null;
 
         // when
-        from(iterable, predicate, keyFunction, valueFunction);
+        createFrom(iterable, predicate, keyFunction, valueFunction);
     }
 
     @Test
-    public void filteringFromMethodWithKeyAndValueFunctionTransformsGivenEntriesToExpectedResult() {
+    public void filteringCreateFromWithKeyAndValueFunctionTransformsGivenEntriesToExpectedResult() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -260,7 +260,7 @@ public abstract class AbstractMapFactoryTest {
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        final Map<String, String> result = from(iterable, predicate, keyFunction, valueFunction);
+        final Map<String, String> result = createFrom(iterable, predicate, keyFunction, valueFunction);
 
         // then
         assertThat(result, hasEntry("1", "1"));
@@ -270,7 +270,7 @@ public abstract class AbstractMapFactoryTest {
     }
 
     @Test
-    public void filteringFromMethodWithKeyAndValueFunctionFiltersOutUnwantedEntries() {
+    public void filteringCreateFromWithKeyAndValueFunctionFiltersOutUnwantedEntries() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -279,19 +279,19 @@ public abstract class AbstractMapFactoryTest {
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        final Map<String, String> result = from(iterable, predicate, keyFunction, valueFunction);
+        final Map<String, String> result = createFrom(iterable, predicate, keyFunction, valueFunction);
 
         // then
         assertThat(result, not(hasEntry("2", "2")));
     }
 
-    protected abstract Map<String, Integer> from(Iterable<Integer> iterable, Function<Integer, String> keyFunction);
+    protected abstract Map<String, Integer> createFrom(Iterable<Integer> iterable, Function<Integer, String> keyFunction);
 
-    protected abstract Map<String, String> from(Iterable<Integer> iterable, Function<Integer, String> keyFunction, Function<Integer, String> valueFunction);
+    protected abstract Map<String, String> createFrom(Iterable<Integer> iterable, Function<Integer, String> keyFunction, Function<Integer, String> valueFunction);
 
-    protected abstract Map<String, Integer> from(Iterable<Integer> iterable, Predicate<Integer> predicate, Function<Integer, String> keyFunction);
+    protected abstract Map<String, Integer> createFrom(Iterable<Integer> iterable, Predicate<Integer> predicate, Function<Integer, String> keyFunction);
 
-    protected abstract Map<String, String> from(Iterable<Integer> iterable, Predicate<Integer> predicate, Function<Integer, String> keyFunction, Function<Integer, String> valueFunction);
+    protected abstract Map<String, String> createFrom(Iterable<Integer> iterable, Predicate<Integer> predicate, Function<Integer, String> keyFunction, Function<Integer, String> valueFunction);
 
     protected abstract Class<?> getFactoryClass();
 }

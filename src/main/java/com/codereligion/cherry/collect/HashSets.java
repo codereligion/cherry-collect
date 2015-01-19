@@ -43,7 +43,7 @@ public final class HashSets {
      * @return a {@link java.util.HashSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <F, T> HashSet<T> from(final Iterable<F> iterable, final Function<? super F, T> function) {
+    public static <F, T> HashSet<T> createFrom(final Iterable<F> iterable, final Function<? super F, T> function) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(function != null, "function must not be null.");
@@ -67,7 +67,7 @@ public final class HashSets {
      * @return a {@link java.util.HashSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <E> HashSet<E> from(final Iterable<E> iterable, final Predicate<? super E> predicate) {
+    public static <E> HashSet<E> createFrom(final Iterable<E> iterable, final Predicate<? super E> predicate) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
@@ -94,7 +94,7 @@ public final class HashSets {
      * @return a {@link java.util.HashSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <F, T> HashSet<T> from(final Iterable<F> iterable, final Predicate<? super F> predicate, final Function<? super F, T> function) {
+    public static <F, T> HashSet<T> createFrom(final Iterable<F> iterable, final Predicate<? super F> predicate, final Function<? super F, T> function) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");

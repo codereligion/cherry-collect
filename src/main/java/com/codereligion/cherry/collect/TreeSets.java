@@ -44,7 +44,7 @@ public final class TreeSets {
      * @return a {@link java.util.TreeSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <F, T extends Comparable<T>> TreeSet<T> from(final Iterable<F> iterable, final Function<? super F, T> function) {
+    public static <F, T extends Comparable<T>> TreeSet<T> createFrom(final Iterable<F> iterable, final Function<? super F, T> function) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(function != null, "function must not be null.");
@@ -70,7 +70,7 @@ public final class TreeSets {
      * @return a {@link java.util.TreeSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <F, T> TreeSet<T> from(final Iterable<F> iterable, final Function<? super F, T> function, final Comparator<T> comparator) {
+    public static <F, T> TreeSet<T> createFrom(final Iterable<F> iterable, final Function<? super F, T> function, final Comparator<T> comparator) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(function != null, "function must not be null.");
@@ -95,7 +95,7 @@ public final class TreeSets {
      * @return a {@link java.util.TreeSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <E extends Comparable<E>> TreeSet<E> from(final Iterable<E> iterable, final Predicate<? super E> predicate) {
+    public static <E extends Comparable<E>> TreeSet<E> createFrom(final Iterable<E> iterable, final Predicate<? super E> predicate) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
@@ -121,7 +121,7 @@ public final class TreeSets {
      * @return a {@link java.util.TreeSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <E> SortedSet<E> from(final Iterable<E> iterable, final Predicate<? super E> predicate, final Comparator<E> comparator) {
+    public static <E> SortedSet<E> createFrom(final Iterable<E> iterable, final Predicate<? super E> predicate, final Comparator<E> comparator) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
@@ -149,7 +149,7 @@ public final class TreeSets {
      * @return a {@link java.util.TreeSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <F, T extends Comparable<T>> TreeSet<T> from(final Iterable<F> iterable,
+    public static <F, T extends Comparable<T>> TreeSet<T> createFrom(final Iterable<F> iterable,
                                                                final Predicate<? super F> predicate,
                                                                final Function<? super F, T> function) {
 
@@ -180,7 +180,7 @@ public final class TreeSets {
      * @return a {@link java.util.TreeSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <F, T> TreeSet<T> from(final Iterable<F> iterable,
+    public static <F, T> TreeSet<T> createFrom(final Iterable<F> iterable,
                                          final Predicate<? super F> predicate,
                                          final Function<? super F, T> function,
                                          final Comparator<T> comparator) {

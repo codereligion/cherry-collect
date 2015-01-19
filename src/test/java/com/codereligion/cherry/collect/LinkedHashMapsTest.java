@@ -28,28 +28,28 @@ import java.util.Map;
 public class LinkedHashMapsTest extends AbstractMapFactoryTest {
 
     @Override
-    protected Map<String, Integer> from(final Iterable<Integer> iterable, final Function<Integer, String> keyFunction) {
-        return LinkedHashMaps.from(iterable, keyFunction);
+    protected Map<String, Integer> createFrom(final Iterable<Integer> iterable, final Function<Integer, String> keyFunction) {
+        return LinkedHashMaps.createFrom(iterable, keyFunction);
     }
 
     @Override
-    protected Map<String, String> from(final Iterable<Integer> iterable,
+    protected Map<String, String> createFrom(final Iterable<Integer> iterable,
                                        final Function<Integer, String> keyFunction,
                                        final Function<Integer, String> valueFunction) {
-        return LinkedHashMaps.from(iterable, keyFunction, valueFunction);
+        return LinkedHashMaps.createFrom(iterable, keyFunction, valueFunction);
     }
 
     @Override
-    protected Map<String, Integer> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Function<Integer, String> keyFunction) {
-        return LinkedHashMaps.from(iterable, predicate, keyFunction);
+    protected Map<String, Integer> createFrom(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Function<Integer, String> keyFunction) {
+        return LinkedHashMaps.createFrom(iterable, predicate, keyFunction);
     }
 
     @Override
-    protected Map<String, String> from(final Iterable<Integer> iterable,
+    protected Map<String, String> createFrom(final Iterable<Integer> iterable,
                                        final Predicate<Integer> predicate,
                                        final Function<Integer, String> keyFunction,
                                        final Function<Integer, String> valueFunction) {
-        return LinkedHashMaps.from(iterable, predicate, keyFunction, valueFunction);
+        return LinkedHashMaps.createFrom(iterable, predicate, keyFunction, valueFunction);
     }
 
     @Override

@@ -28,30 +28,30 @@ import com.google.common.collect.ArrayListMultimap;
 public class ArrayListMultimapsTest extends AbstractMultimapFactoryTest {
 
     @Override
-    protected ArrayListMultimap<String, Integer> from(final Iterable<Integer> iterable, final Function<Integer, String> keyFunction) {
-        return ArrayListMultimaps.from(iterable, keyFunction);
+    protected ArrayListMultimap<String, Integer> createFrom(final Iterable<Integer> iterable, final Function<Integer, String> keyFunction) {
+        return ArrayListMultimaps.createFrom(iterable, keyFunction);
     }
 
     @Override
-    protected ArrayListMultimap<String, String> from(final Iterable<Integer> iterable,
+    protected ArrayListMultimap<String, String> createFrom(final Iterable<Integer> iterable,
                                                      final Function<Integer, String> keyFunction,
                                                      final Function<Integer, String> valueFunction) {
-        return ArrayListMultimaps.from(iterable, keyFunction, valueFunction);
+        return ArrayListMultimaps.createFrom(iterable, keyFunction, valueFunction);
     }
 
     @Override
-    protected ArrayListMultimap<String, Integer> from(final Iterable<Integer> iterable,
+    protected ArrayListMultimap<String, Integer> createFrom(final Iterable<Integer> iterable,
                                                       final Predicate<Integer> predicate,
                                                       final Function<Integer, String> keyFunction) {
-        return ArrayListMultimaps.from(iterable, predicate, keyFunction);
+        return ArrayListMultimaps.createFrom(iterable, predicate, keyFunction);
     }
 
     @Override
-    protected ArrayListMultimap<String, String> from(final Iterable<Integer> iterable,
+    protected ArrayListMultimap<String, String> createFrom(final Iterable<Integer> iterable,
                                                      final Predicate<Integer> predicate,
                                                      final Function<Integer, String> keyFunction,
                                                      final Function<Integer, String> valueFunction) {
-        return ArrayListMultimaps.from(iterable, predicate, keyFunction, valueFunction);
+        return ArrayListMultimaps.createFrom(iterable, predicate, keyFunction, valueFunction);
     }
 
     @Override

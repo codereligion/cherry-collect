@@ -27,18 +27,18 @@ import com.google.common.base.Predicate;
 public class ImmutableSetsTest extends AbstractIterableFactoryTest {
 
     @Override
-    protected Iterable<Integer> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate) {
-        return ImmutableSets.from(iterable, predicate);
+    protected Iterable<Integer> createFrom(final Iterable<Integer> iterable, final Predicate<Integer> predicate) {
+        return ImmutableSets.createFrom(iterable, predicate);
     }
 
     @Override
-    protected Iterable<String> from(final Iterable<Integer> iterable, final Function<Integer, String> function) {
-        return ImmutableSets.from(iterable, function);
+    protected Iterable<String> createFrom(final Iterable<Integer> iterable, final Function<Integer, String> function) {
+        return ImmutableSets.createFrom(iterable, function);
     }
 
     @Override
-    protected Iterable<String> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Function<Integer, String> function) {
-        return ImmutableSets.from(iterable, predicate, function);
+    protected Iterable<String> createFrom(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Function<Integer, String> function) {
+        return ImmutableSets.createFrom(iterable, predicate, function);
     }
 
     @Override

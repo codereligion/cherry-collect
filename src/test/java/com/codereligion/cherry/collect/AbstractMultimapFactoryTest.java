@@ -43,35 +43,35 @@ public abstract class AbstractMultimapFactoryTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void fromMethodWithKeyFunctionDoesNotAllowNullIterable() {
+    public void createFromWithKeyFunctionDoesNotAllowNullIterable() {
         // given
         final Iterable<Integer> iterable = null;
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, keyFunction);
+        createFrom(iterable, keyFunction);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void fromMethodWithKeyFunctionDoesNotAllowNullKeyFunction() {
+    public void createFromWithKeyFunctionDoesNotAllowNullKeyFunction() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
         final Function<Integer, String> keyFunction = null;
 
         // when
-        from(iterable, keyFunction);
+        createFrom(iterable, keyFunction);
     }
 
     @Test
-    public void fromMethodWithKeyFunctionTransformsGivenEntriesToExpectedResult() {
+    public void createFromWithKeyFunctionTransformsGivenEntriesToExpectedResult() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
 
         // when
-        final Multimap<String, Integer> result = from(iterable, keyFunction);
+        final Multimap<String, Integer> result = createFrom(iterable, keyFunction);
 
         // then
         assertThat(result, hasEntry("1", 1));
@@ -81,18 +81,18 @@ public abstract class AbstractMultimapFactoryTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void fromMethodWithKeyFunctionAndValueFunctionDoesNotAllowNullIterable() {
+    public void createFromWithKeyFunctionAndValueFunctionDoesNotAllowNullIterable() {
         // given
         final Iterable<Integer> iterable = null;
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, keyFunction, valueFunction);
+        createFrom(iterable, keyFunction, valueFunction);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void fromMethodWithKeyFunctionAndValueFunctionDoesNotAllowNullKeyFunction() {
+    public void createFromWithKeyFunctionAndValueFunctionDoesNotAllowNullKeyFunction() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -100,11 +100,11 @@ public abstract class AbstractMultimapFactoryTest {
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, keyFunction, valueFunction);
+        createFrom(iterable, keyFunction, valueFunction);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void fromMethodWithKeyFunctionAndValueFunctionDoesNotAllowNullValueFunction() {
+    public void createFromWithKeyFunctionAndValueFunctionDoesNotAllowNullValueFunction() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -112,11 +112,11 @@ public abstract class AbstractMultimapFactoryTest {
         final Function<Integer, String> valueFunction = null;
 
         // when
-        from(iterable, keyFunction, valueFunction);
+        createFrom(iterable, keyFunction, valueFunction);
     }
 
     @Test
-    public void fromMethodWithKeyFunctionAndValueFunctionTransformsGivenEntriesToExpectedResult() {
+    public void createFromWithKeyFunctionAndValueFunctionTransformsGivenEntriesToExpectedResult() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -124,7 +124,7 @@ public abstract class AbstractMultimapFactoryTest {
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        final Multimap<String, String> result = from(iterable, keyFunction, valueFunction);
+        final Multimap<String, String> result = createFrom(iterable, keyFunction, valueFunction);
 
         // then
         assertThat(result, hasEntry("1", "1"));
@@ -134,18 +134,18 @@ public abstract class AbstractMultimapFactoryTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithKeyFunctionDoesNotAllowNullIterable() {
+    public void filteringCreateFromWithKeyFunctionDoesNotAllowNullIterable() {
         // given
         final Iterable<Integer> iterable = null;
         final Predicate<Integer> predicate = Predicates.alwaysTrue();
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, predicate, keyFunction);
+        createFrom(iterable, predicate, keyFunction);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithKeyFunctionDoesNotAllowNullPredicate() {
+    public void filteringCreateFromWithKeyFunctionDoesNotAllowNullPredicate() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -153,11 +153,11 @@ public abstract class AbstractMultimapFactoryTest {
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, predicate, keyFunction);
+        createFrom(iterable, predicate, keyFunction);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithKeyFunctionDoesNotAllowNullKeyFunction() {
+    public void filteringCreateFromWithKeyFunctionDoesNotAllowNullKeyFunction() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -165,11 +165,11 @@ public abstract class AbstractMultimapFactoryTest {
         final Function<Integer, String> keyFunction = null;
 
         // when
-        from(iterable, predicate, keyFunction);
+        createFrom(iterable, predicate, keyFunction);
     }
 
     @Test
-    public void filteringFromMethodWithKeyFunctionTransformsGivenEntriesToExpectedResult() {
+    public void filteringCreateFromWithKeyFunctionTransformsGivenEntriesToExpectedResult() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -177,7 +177,7 @@ public abstract class AbstractMultimapFactoryTest {
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
 
         // when
-        final Multimap<String, Integer> result = from(iterable, predicate, keyFunction);
+        final Multimap<String, Integer> result = createFrom(iterable, predicate, keyFunction);
 
         // then
         assertThat(result, hasEntry("1", 1));
@@ -187,7 +187,7 @@ public abstract class AbstractMultimapFactoryTest {
     }
 
     @Test
-    public void filteringFromMethodWithKeyFunctionFiltersOutUnwantedEntries() {
+    public void filteringCreateFromWithKeyFunctionFiltersOutUnwantedEntries() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -195,14 +195,14 @@ public abstract class AbstractMultimapFactoryTest {
         final Function<Integer, String> keyFunction = ToStringFunction.toStringFunction();
 
         // when
-        final Multimap<String, Integer> result = from(iterable, predicate, keyFunction);
+        final Multimap<String, Integer> result = createFrom(iterable, predicate, keyFunction);
 
         // then
         assertThat(result, not(hasEntry("2", 2)));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithKeyFunctionAndValueFunctionDoesNotAllowNullIterable() {
+    public void filteringCreateFromWithKeyFunctionAndValueFunctionDoesNotAllowNullIterable() {
         // given
         final Iterable<Integer> iterable = null;
         final Predicate<Integer> predicate = Predicates.alwaysTrue();
@@ -210,11 +210,11 @@ public abstract class AbstractMultimapFactoryTest {
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, predicate, keyFunction, valueFunction);
+        createFrom(iterable, predicate, keyFunction, valueFunction);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithKeyFunctionAndValueFunctionDoesNotAllowNullPredicate() {
+    public void filteringCreateFromWithKeyFunctionAndValueFunctionDoesNotAllowNullPredicate() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -224,11 +224,11 @@ public abstract class AbstractMultimapFactoryTest {
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, predicate, keyFunction, valueFunction);
+        createFrom(iterable, predicate, keyFunction, valueFunction);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithKeyFunctionAndValueFunctionDoesNotAllowNullKeyFunction() {
+    public void filteringCreateFromWithKeyFunctionAndValueFunctionDoesNotAllowNullKeyFunction() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -237,11 +237,11 @@ public abstract class AbstractMultimapFactoryTest {
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        from(iterable, predicate, keyFunction, valueFunction);
+        createFrom(iterable, predicate, keyFunction, valueFunction);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithKeyFunctionAndValueFunctionDoesNotAllowNullValueFunction() {
+    public void filteringCreateFromWithKeyFunctionAndValueFunctionDoesNotAllowNullValueFunction() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -250,11 +250,11 @@ public abstract class AbstractMultimapFactoryTest {
         final Function<Integer, String> valueFunction = null;
 
         // when
-        from(iterable, predicate, keyFunction, valueFunction);
+        createFrom(iterable, predicate, keyFunction, valueFunction);
     }
 
     @Test
-    public void filteringFromMethodWithKeyFunctionAndValueFunctionTransformsGivenEntriesToExpectedResult() {
+    public void filteringCreateFromWithKeyFunctionAndValueFunctionTransformsGivenEntriesToExpectedResult() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -263,7 +263,7 @@ public abstract class AbstractMultimapFactoryTest {
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        final Multimap<String, String> result = from(iterable, predicate, keyFunction, valueFunction);
+        final Multimap<String, String> result = createFrom(iterable, predicate, keyFunction, valueFunction);
 
         // then
         assertThat(result, hasEntry("1", "1"));
@@ -273,7 +273,7 @@ public abstract class AbstractMultimapFactoryTest {
     }
 
     @Test
-    public void filteringFromMethodWithKeyFunctionAndValueFunctionFiltersOutUnwantedEntries() {
+    public void filteringCreateFromWithKeyFunctionAndValueFunctionFiltersOutUnwantedEntries() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -282,21 +282,21 @@ public abstract class AbstractMultimapFactoryTest {
         final Function<Integer, String> valueFunction = ToStringFunction.toStringFunction();
 
         // when
-        final Multimap<String, String> result = from(iterable, predicate, keyFunction, valueFunction);
+        final Multimap<String, String> result = createFrom(iterable, predicate, keyFunction, valueFunction);
 
         // then
         assertThat(result, not(hasEntry("2", "2")));
     }
 
-    protected abstract Multimap<String, Integer> from(Iterable<Integer> iterable, Function<Integer, String> keyFunction);
+    protected abstract Multimap<String, Integer> createFrom(Iterable<Integer> iterable, Function<Integer, String> keyFunction);
 
-    protected abstract Multimap<String, String> from(Iterable<Integer> iterable,
+    protected abstract Multimap<String, String> createFrom(Iterable<Integer> iterable,
                                                      Function<Integer, String> keyFunction,
                                                      Function<Integer, String> valueFunction);
 
-    protected abstract Multimap<String, Integer> from(Iterable<Integer> iterable, Predicate<Integer> predicate, Function<Integer, String> keyFunction);
+    protected abstract Multimap<String, Integer> createFrom(Iterable<Integer> iterable, Predicate<Integer> predicate, Function<Integer, String> keyFunction);
 
-    protected abstract Multimap<String, String> from(Iterable<Integer> iterable,
+    protected abstract Multimap<String, String> createFrom(Iterable<Integer> iterable,
                                                      Predicate<Integer> predicate,
                                                      Function<Integer, String> keyFunction,
                                                      Function<Integer, String> valueFunction);

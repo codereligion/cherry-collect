@@ -42,7 +42,7 @@ public final class HashMultimaps {
      * @return a {@link com.google.common.collect.HashMultimap}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <K, V> HashMultimap<K, V> from(final Iterable<V> iterable, final Function<? super V, K> keyFunction) {
+    public static <K, V> HashMultimap<K, V> createFrom(final Iterable<V> iterable, final Function<? super V, K> keyFunction) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
@@ -69,7 +69,7 @@ public final class HashMultimaps {
      * @return a {@link com.google.common.collect.HashMultimap}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <E, K, V> HashMultimap<K, V> from(final Iterable<E> iterable,
+    public static <E, K, V> HashMultimap<K, V> createFrom(final Iterable<E> iterable,
                                                     final Function<? super E, K> keyFunction,
                                                     final Function<? super E, V> valueFunction) {
 
@@ -99,7 +99,7 @@ public final class HashMultimaps {
      * @return a {@link com.google.common.collect.HashMultimap}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <K, V> HashMultimap<K, V> from(final Iterable<V> iterable, final Predicate<? super V> predicate, final Function<? super V, K> keyFunction) {
+    public static <K, V> HashMultimap<K, V> createFrom(final Iterable<V> iterable, final Predicate<? super V> predicate, final Function<? super V, K> keyFunction) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
@@ -130,7 +130,7 @@ public final class HashMultimaps {
      * @return a {@link com.google.common.collect.HashMultimap}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <E, K, V> HashMultimap<K, V> from(final Iterable<E> iterable,
+    public static <E, K, V> HashMultimap<K, V> createFrom(final Iterable<E> iterable,
                                                     final Predicate<? super E> predicate,
                                                     final Function<? super E, K> keyFunction,
                                                     final Function<? super E, V> valueFunction) {

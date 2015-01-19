@@ -28,36 +28,36 @@ import java.util.Comparator;
 public class ImmutableSortedSetsTest extends AbstractSortedSetFactoryTest {
 
     @Override
-    protected Iterable<Integer> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Comparator<Integer> comparator) {
-        return ImmutableSortedSets.from(iterable, predicate, comparator);
+    protected Iterable<Integer> createFrom(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Comparator<Integer> comparator) {
+        return ImmutableSortedSets.createFrom(iterable, predicate, comparator);
     }
 
     @Override
-    protected Iterable<String> from(final Iterable<Integer> iterable, final Function<Integer, String> function, final Comparator<String> comparator) {
-        return ImmutableSortedSets.from(iterable, function, comparator);
+    protected Iterable<String> createFrom(final Iterable<Integer> iterable, final Function<Integer, String> function, final Comparator<String> comparator) {
+        return ImmutableSortedSets.createFrom(iterable, function, comparator);
     }
 
     @Override
-    protected Iterable<String> from(final Iterable<Integer> iterable,
+    protected Iterable<String> createFrom(final Iterable<Integer> iterable,
                                     final Predicate<Integer> predicate,
                                     final Function<Integer, String> function,
                                     final Comparator<String> comparator) {
-        return ImmutableSortedSets.from(iterable, predicate, function, comparator);
+        return ImmutableSortedSets.createFrom(iterable, predicate, function, comparator);
     }
 
     @Override
-    protected Iterable<Integer> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate) {
-        return ImmutableSortedSets.from(iterable, predicate);
+    protected Iterable<Integer> createFrom(final Iterable<Integer> iterable, final Predicate<Integer> predicate) {
+        return ImmutableSortedSets.createFrom(iterable, predicate);
     }
 
     @Override
-    protected Iterable<String> from(final Iterable<Integer> iterable, final Function<Integer, String> function) {
-        return ImmutableSortedSets.from(iterable, function);
+    protected Iterable<String> createFrom(final Iterable<Integer> iterable, final Function<Integer, String> function) {
+        return ImmutableSortedSets.createFrom(iterable, function);
     }
 
     @Override
-    protected Iterable<String> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Function<Integer, String> function) {
-        return ImmutableSortedSets.from(iterable, predicate, function);
+    protected Iterable<String> createFrom(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Function<Integer, String> function) {
+        return ImmutableSortedSets.createFrom(iterable, predicate, function);
     }
 
     @Override

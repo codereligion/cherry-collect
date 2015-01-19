@@ -28,30 +28,30 @@ import com.google.common.collect.HashMultimap;
 public class HashMultimapsTest extends AbstractMultimapFactoryTest {
 
     @Override
-    protected HashMultimap<String, Integer> from(final Iterable<Integer> iterable, final Function<Integer, String> keyFunction) {
-        return HashMultimaps.from(iterable, keyFunction);
+    protected HashMultimap<String, Integer> createFrom(final Iterable<Integer> iterable, final Function<Integer, String> keyFunction) {
+        return HashMultimaps.createFrom(iterable, keyFunction);
     }
 
     @Override
-    protected HashMultimap<String, String> from(final Iterable<Integer> iterable,
+    protected HashMultimap<String, String> createFrom(final Iterable<Integer> iterable,
                                                 final Function<Integer, String> keyFunction,
                                                 final Function<Integer, String> valueFunction) {
-        return HashMultimaps.from(iterable, keyFunction, valueFunction);
+        return HashMultimaps.createFrom(iterable, keyFunction, valueFunction);
     }
 
     @Override
-    protected HashMultimap<String, Integer> from(final Iterable<Integer> iterable,
+    protected HashMultimap<String, Integer> createFrom(final Iterable<Integer> iterable,
                                                  final Predicate<Integer> predicate,
                                                  final Function<Integer, String> keyFunction) {
-        return HashMultimaps.from(iterable, predicate, keyFunction);
+        return HashMultimaps.createFrom(iterable, predicate, keyFunction);
     }
 
     @Override
-    protected HashMultimap<String, String> from(final Iterable<Integer> iterable,
+    protected HashMultimap<String, String> createFrom(final Iterable<Integer> iterable,
                                                 final Predicate<Integer> predicate,
                                                 final Function<Integer, String> keyFunction,
                                                 final Function<Integer, String> valueFunction) {
-        return HashMultimaps.from(iterable, predicate, keyFunction, valueFunction);
+        return HashMultimaps.createFrom(iterable, predicate, keyFunction, valueFunction);
     }
 
     @Override

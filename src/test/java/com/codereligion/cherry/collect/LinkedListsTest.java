@@ -27,18 +27,18 @@ import com.google.common.base.Predicate;
 public class LinkedListsTest extends AbstractIterableFactoryTest {
 
     @Override
-    protected Iterable<Integer> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate) {
-        return LinkedLists.from(iterable, predicate);
+    protected Iterable<Integer> createFrom(final Iterable<Integer> iterable, final Predicate<Integer> predicate) {
+        return LinkedLists.createFrom(iterable, predicate);
     }
 
     @Override
-    protected Iterable<String> from(final Iterable<Integer> iterable, final Function<Integer, String> function) {
-        return LinkedLists.from(iterable, function);
+    protected Iterable<String> createFrom(final Iterable<Integer> iterable, final Function<Integer, String> function) {
+        return LinkedLists.createFrom(iterable, function);
     }
 
     @Override
-    protected Iterable<String> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Function<Integer, String> function) {
-        return LinkedLists.from(iterable, predicate, function);
+    protected Iterable<String> createFrom(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Function<Integer, String> function) {
+        return LinkedLists.createFrom(iterable, predicate, function);
     }
 
     @Override

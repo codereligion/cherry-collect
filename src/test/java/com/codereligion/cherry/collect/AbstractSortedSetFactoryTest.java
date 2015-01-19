@@ -38,18 +38,18 @@ import static org.junit.Assert.assertThat;
 public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFactoryTest {
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithComparatorDoesNotAllowNullIterable() {
+    public void filteringCreateFromWithComparatorDoesNotAllowNullIterable() {
         // given
         final Iterable<Integer> iterable = null;
         final Predicate<Integer> predicate = Predicates.alwaysTrue();
         final Comparator<Integer> comparator = Ordering.natural().reverse();
 
         // when
-        from(iterable, predicate, comparator);
+        createFrom(iterable, predicate, comparator);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithComparatorDoesNotAllowNullPredicate() {
+    public void filteringCreateFromWithComparatorDoesNotAllowNullPredicate() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -57,11 +57,11 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
         final Comparator<Integer> comparator = Ordering.natural().reverse();
 
         // when
-        from(iterable, predicate, comparator);
+        createFrom(iterable, predicate, comparator);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringFromMethodWithComparatorDoesNotAllowNullComparator() {
+    public void filteringCreateFromWithComparatorDoesNotAllowNullComparator() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -69,11 +69,11 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
         final Comparator<Integer> comparator = null;
 
         // when
-        from(iterable, predicate, comparator);
+        createFrom(iterable, predicate, comparator);
     }
 
     @Test
-    public void filteringFromMethodWithComparatorFiltersOutUnwantedElements() {
+    public void filteringCreateFromWithComparatorFiltersOutUnwantedElements() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -81,28 +81,28 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
         final Comparator<Integer> comparator = Ordering.natural().reverse();
 
         // when
-        final Iterable<Integer> result = from(iterable, predicate, comparator);
+        final Iterable<Integer> result = createFrom(iterable, predicate, comparator);
 
         // then
         assertThat(result, not(hasItem(2)));
     }
 
     @Test
-    public void filteringFromMethodWithComparatorOrdersGivenElementsAccordingToTheirNaturalOrder() {
+    public void filteringCreateFromWithComparatorOrdersGivenElementsAccordingToTheirNaturalOrder() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(3, 1, 2, 4);
         final Predicate<Integer> predicate = Predicates.alwaysTrue();
 
         // when
-        final Iterable<Integer> result = from(iterable, predicate);
+        final Iterable<Integer> result = createFrom(iterable, predicate);
 
         // then
         assertThat(result, contains(1, 2, 3, 4));
     }
 
     @Test
-    public void filteringFromMethodWithComparatorOrdersGivenElementsAccordingToTheGivenComparator() {
+    public void filteringCreateFromWithComparatorOrdersGivenElementsAccordingToTheGivenComparator() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -110,14 +110,14 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
         final Comparator<Integer> comparator = Ordering.natural().reverse();
 
         // when
-        final Iterable<Integer> result = from(iterable, predicate, comparator);
+        final Iterable<Integer> result = createFrom(iterable, predicate, comparator);
 
         // then
         assertThat(result, contains(4, 3, 2, 1));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void transformingFromMethodWithComparatorDoesNotAllowNullIterable() {
+    public void transformingCreateFromWithComparatorDoesNotAllowNullIterable() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -125,11 +125,11 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
         final Comparator<String> comparator = Ordering.natural().reverse();
 
         // when
-        from(iterable, function, comparator);
+        createFrom(iterable, function, comparator);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void transformingFromMethodWithComparatorDoesNotAllowNullFunction() {
+    public void transformingCreateFromWithComparatorDoesNotAllowNullFunction() {
 
         // given
         final Iterable<Integer> iterable = null;
@@ -137,12 +137,12 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
         final Comparator<String> comparator = Ordering.natural().reverse();
 
         // when
-        from(iterable, function, comparator);
+        createFrom(iterable, function, comparator);
     }
 
 
     @Test(expected = IllegalArgumentException.class)
-    public void transformingFromMethodWithComparatorDoesNotAllowNullComparator() {
+    public void transformingCreateFromWithComparatorDoesNotAllowNullComparator() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -150,11 +150,11 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
         final Comparator<String> comparator = null;
 
         // when
-        from(iterable, function, comparator);
+        createFrom(iterable, function, comparator);
     }
 
     @Test
-    public void transformingFromMethodWithComparatorTransformsGivenEntriesToExpectedResult() {
+    public void transformingCreateFromWithComparatorTransformsGivenEntriesToExpectedResult() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -162,28 +162,28 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
         final Comparator<String> comparator = Ordering.natural().reverse();
 
         // when
-        final Iterable<String> result = from(iterable, function, comparator);
+        final Iterable<String> result = createFrom(iterable, function, comparator);
 
         // then
         assertThat(result, hasItems("1", "2", "3", "4"));
     }
 
     @Test
-    public void transformingFromMethodWithComparatorOrdersGivenElementsAccordingToTheirNaturalOrder() {
+    public void transformingCreateFromWithComparatorOrdersGivenElementsAccordingToTheirNaturalOrder() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(3, 1, 2, 4);
         final Function<Integer, String> function = ToStringFunction.toStringFunction();
 
         // when
-        final Iterable<String> result = from(iterable, function);
+        final Iterable<String> result = createFrom(iterable, function);
 
         // then
         assertThat(result, contains("1", "2", "3", "4"));
     }
 
     @Test
-    public void transformingFromMethodWithComparatorOrdersGivenElementsAccordingToTheGivenComparator() {
+    public void transformingCreateFromWithComparatorOrdersGivenElementsAccordingToTheGivenComparator() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -191,14 +191,14 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
         final Comparator<String> comparator = Ordering.natural().reverse();
 
         // when
-        final Iterable<String> result = from(iterable, function, comparator);
+        final Iterable<String> result = createFrom(iterable, function, comparator);
 
         // then
         assertThat(result, contains("4", "3", "2", "1"));
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringAndTransformingFromMethodWithComparatorDoesNotAllowNullIterable() {
+    public void filteringAndTransformingCreateFromWithComparatorDoesNotAllowNullIterable() {
 
         // given
         final Iterable<Integer> iterable = null;
@@ -207,11 +207,11 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
         final Comparator<String> comparator = Ordering.natural().reverse();
 
         // when
-        from(iterable, predicate, function, comparator);
+        createFrom(iterable, predicate, function, comparator);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringAndTransformingFromMethodWithComparatorDoesNotAllowNullPredicate() {
+    public void filteringAndTransformingCreateFromWithComparatorDoesNotAllowNullPredicate() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -220,11 +220,11 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
         final Comparator<String> comparator = Ordering.natural().reverse();
 
         // when
-        from(iterable, predicate, function, comparator);
+        createFrom(iterable, predicate, function, comparator);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringAndTransformingFromMethodWithComparatorDoesNotAllowNullFunction() {
+    public void filteringAndTransformingCreateFromWithComparatorDoesNotAllowNullFunction() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -233,11 +233,11 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
         final Comparator<String> comparator = Ordering.natural().reverse();
 
         // when
-        from(iterable, predicate, function, comparator);
+        createFrom(iterable, predicate, function, comparator);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void filteringAndTransformingFromMethodWithComparatorDoesNotAllowNullComparator() {
+    public void filteringAndTransformingCreateFromWithComparatorDoesNotAllowNullComparator() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList();
@@ -246,11 +246,11 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
         final Comparator<String> comparator = null;
 
         // when
-        from(iterable, predicate, function, comparator);
+        createFrom(iterable, predicate, function, comparator);
     }
 
     @Test
-    public void filteringAndTransformingFromMethodWithComparatorFiltersOutUnwantedElements() {
+    public void filteringAndTransformingCreateFromWithComparatorFiltersOutUnwantedElements() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -259,14 +259,14 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
         final Comparator<String> comparator = Ordering.natural().reverse();
 
         // when
-        final Iterable<String> result = from(iterable, predicate, function, comparator);
+        final Iterable<String> result = createFrom(iterable, predicate, function, comparator);
 
         // then
         assertThat(result, not(hasItem("2")));
     }
 
     @Test
-    public void filteringAndTransformingFromMethodWithComparatorTransformsGivenEntriesToExpectedResult() {
+    public void filteringAndTransformingCreateFromWithComparatorTransformsGivenEntriesToExpectedResult() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, null, 2, 3, 4);
@@ -275,7 +275,7 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
         final Comparator<String> comparator = Ordering.natural().reverse();
 
         // when
-        final Iterable<String> result = TreeSets.from(iterable, predicate, function, comparator);
+        final Iterable<String> result = TreeSets.createFrom(iterable, predicate, function, comparator);
 
         // then
         assertThat(result, hasItems("1", "2", "3", "4"));
@@ -283,7 +283,7 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
 
 
     @Test
-    public void filteringAndTransformingFromMethodWithComparatorOrdersGivenElementsAccordingToTheirNaturalOrder() {
+    public void filteringAndTransformingCreateFromWithComparatorOrdersGivenElementsAccordingToTheirNaturalOrder() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(3, 1, 2, 4);
@@ -291,14 +291,14 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
         final Function<Integer, String> function = ToStringFunction.toStringFunction();
 
         // when
-        final Iterable<String> result = from(iterable, predicate, function);
+        final Iterable<String> result = createFrom(iterable, predicate, function);
 
         // then
         assertThat(result, contains("1", "2", "3", "4"));
     }
 
     @Test
-    public void filteringAndTransformingFromMethodWithComparatorOrdersGivenElementsAccordingToTheGivenComparator() {
+    public void filteringAndTransformingCreateFromWithComparatorOrdersGivenElementsAccordingToTheGivenComparator() {
 
         // given
         final Iterable<Integer> iterable = Lists.newArrayList(1, 2, 3, 4);
@@ -307,18 +307,18 @@ public abstract class AbstractSortedSetFactoryTest extends AbstractIterableFacto
         final Comparator<String> comparator = Ordering.natural().reverse();
 
         // when
-        final Iterable<String> result = from(iterable, predicate, function, comparator);
+        final Iterable<String> result = createFrom(iterable, predicate, function, comparator);
 
         // then
         assertThat(result, contains("4", "3", "2", "1"));
     }
 
-    protected abstract Iterable<Integer> from(Iterable<Integer> iterable, Predicate<Integer> predicate, Comparator<Integer> comparator);
+    protected abstract Iterable<Integer> createFrom(Iterable<Integer> iterable, Predicate<Integer> predicate, Comparator<Integer> comparator);
 
 
-    protected abstract Iterable<String> from(Iterable<Integer> iterable, Function<Integer, String> function, Comparator<String> comparator);
+    protected abstract Iterable<String> createFrom(Iterable<Integer> iterable, Function<Integer, String> function, Comparator<String> comparator);
 
-    protected abstract Iterable<String> from(Iterable<Integer> iterable,
+    protected abstract Iterable<String> createFrom(Iterable<Integer> iterable,
                                              Predicate<Integer> predicate,
                                              Function<Integer, String> function,
                                              Comparator<String> comparator);

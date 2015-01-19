@@ -29,36 +29,36 @@ public class TreeSetsTest extends AbstractSortedSetFactoryTest {
 
 
     @Override
-    protected Iterable<Integer> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Comparator<Integer> comparator) {
-        return TreeSets.from(iterable, predicate, comparator);
+    protected Iterable<Integer> createFrom(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Comparator<Integer> comparator) {
+        return TreeSets.createFrom(iterable, predicate, comparator);
     }
 
     @Override
-    protected Iterable<String> from(final Iterable<Integer> iterable, final Function<Integer, String> function, final Comparator<String> comparator) {
-        return TreeSets.from(iterable, function, comparator);
+    protected Iterable<String> createFrom(final Iterable<Integer> iterable, final Function<Integer, String> function, final Comparator<String> comparator) {
+        return TreeSets.createFrom(iterable, function, comparator);
     }
 
     @Override
-    protected Iterable<String> from(final Iterable<Integer> iterable,
+    protected Iterable<String> createFrom(final Iterable<Integer> iterable,
                                     final Predicate<Integer> predicate,
                                     final Function<Integer, String> function,
                                     final Comparator<String> comparator) {
-        return TreeSets.from(iterable, predicate, function, comparator);
+        return TreeSets.createFrom(iterable, predicate, function, comparator);
     }
 
     @Override
-    protected Iterable<Integer> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate) {
-        return TreeSets.from(iterable, predicate);
+    protected Iterable<Integer> createFrom(final Iterable<Integer> iterable, final Predicate<Integer> predicate) {
+        return TreeSets.createFrom(iterable, predicate);
     }
 
     @Override
-    protected Iterable<String> from(final Iterable<Integer> iterable, final Function<Integer, String> function) {
-        return TreeSets.from(iterable, function);
+    protected Iterable<String> createFrom(final Iterable<Integer> iterable, final Function<Integer, String> function) {
+        return TreeSets.createFrom(iterable, function);
     }
 
     @Override
-    protected Iterable<String> from(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Function<Integer, String> function) {
-        return TreeSets.from(iterable, predicate, function);
+    protected Iterable<String> createFrom(final Iterable<Integer> iterable, final Predicate<Integer> predicate, final Function<Integer, String> function) {
+        return TreeSets.createFrom(iterable, predicate, function);
     }
 
     @Override
