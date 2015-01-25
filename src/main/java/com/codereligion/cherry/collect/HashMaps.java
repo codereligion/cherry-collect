@@ -22,7 +22,7 @@ import java.util.HashMap;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * TODO
+ * Factory class for {@link java.util.HashMap HashMaps}.
  *
  * @author Sebastian Gr&oml;bler
  * @since 28.12.2014
@@ -34,7 +34,7 @@ public final class HashMaps {
     }
 
     /**
-     * TODO
+     * Creates a new instance from the given {@code iterable}. Each iterable entry is mapped by its {@code keyFunction} result.
      *
      * @param iterable    the entries to be mapped
      * @param keyFunction the function to retrieve the map key from an entry
@@ -59,7 +59,8 @@ public final class HashMaps {
     }
 
     /**
-     * TODO
+     * Creates a new instance from the given {@code iterable}. Each iterable entry is mapped from its {@code keyFunction} result to its {@code valueFunction}
+     * result.
      *
      * @param iterable      the entries to be mapped
      * @param keyFunction   the function to retrieve the map key from an entry
@@ -71,8 +72,8 @@ public final class HashMaps {
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
     public static <E, K, V> HashMap<K, V> createFrom(final Iterable<E> iterable,
-                                               final Function<? super E, K> keyFunction,
-                                               final Function<? super E, V> valueFunction) {
+                                                     final Function<? super E, K> keyFunction,
+                                                     final Function<? super E, V> valueFunction) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
@@ -91,7 +92,8 @@ public final class HashMaps {
 
 
     /**
-     * TODO
+     * Creates a new instance from the given {@code iterable}. Each iterable entry is mapped by its {@code keyFunction} result if the given {@code predicate}
+     * applies.
      *
      * @param iterable    the entries to be filtered and transformed
      * @param predicate   the predicate to filter the entries with
@@ -120,7 +122,8 @@ public final class HashMaps {
     }
 
     /**
-     * TODO
+     * Creates a new instance from the given {@code iterable}. Each iterable entry is mapped from its {@code keyFunction} result to its {@code valueFunction}
+     * result if the given {@code predicate} applies.
      *
      * @param iterable      the entries to be filtered and transformed
      * @param predicate     the predicate to filter the entries with
@@ -133,9 +136,9 @@ public final class HashMaps {
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
     public static <E, K, V> HashMap<K, V> createFrom(final Iterable<E> iterable,
-                                               final Predicate<? super E> predicate,
-                                               final Function<? super E, K> keyFunction,
-                                               final Function<? super E, V> valueFunction) {
+                                                     final Predicate<? super E> predicate,
+                                                     final Function<? super E, K> keyFunction,
+                                                     final Function<? super E, V> valueFunction) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");

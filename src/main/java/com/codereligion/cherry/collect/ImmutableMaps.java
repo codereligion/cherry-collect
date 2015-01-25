@@ -21,7 +21,7 @@ import com.google.common.collect.ImmutableMap;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * TODO
+ * Factory class for {@link com.google.common.collect.ImmutableMap ImmutableMaps}.
  *
  * @author Sebastian Gr&oml;bler
  * @since 28.12.2014
@@ -33,7 +33,7 @@ public final class ImmutableMaps {
     }
 
     /**
-     * TODO
+     * Creates a new instance from the given {@code iterable}. Each iterable entry is mapped by its {@code keyFunction} result.
      *
      * @param iterable    the entries to be mapped
      * @param keyFunction the function to retrieve the map key from an entry
@@ -58,7 +58,8 @@ public final class ImmutableMaps {
     }
 
     /**
-     * TODO
+     * Creates a new instance from the given {@code iterable}. Each iterable entry is mapped from its {@code keyFunction} result to its {@code valueFunction}
+     * result.
      *
      * @param iterable      the entries to be mapped
      * @param keyFunction   the function to retrieve the map key from an entry
@@ -70,8 +71,8 @@ public final class ImmutableMaps {
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
     public static <E, K, V> ImmutableMap<K, V> createFrom(final Iterable<E> iterable,
-                                               final Function<? super E, K> keyFunction,
-                                               final Function<? super E, V> valueFunction) {
+                                                          final Function<? super E, K> keyFunction,
+                                                          final Function<? super E, V> valueFunction) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
@@ -90,7 +91,8 @@ public final class ImmutableMaps {
 
 
     /**
-     * TODO
+     * Creates a new instance from the given {@code iterable}. Each iterable entry is mapped by its {@code keyFunction} result if the given {@code predicate}
+     * applies.
      *
      * @param iterable    the entries to be filtered and transformed
      * @param predicate   the predicate to filter the entries with
@@ -100,7 +102,9 @@ public final class ImmutableMaps {
      * @return a {@link com.google.common.collect.ImmutableMap}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <K, V> ImmutableMap<K, V> createFrom(final Iterable<V> iterable, final Predicate<? super V> predicate, final Function<? super V, K> keyFunction) {
+    public static <K, V> ImmutableMap<K, V> createFrom(final Iterable<V> iterable,
+                                                       final Predicate<? super V> predicate,
+                                                       final Function<? super V, K> keyFunction) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
@@ -119,7 +123,8 @@ public final class ImmutableMaps {
     }
 
     /**
-     * TODO
+     * Creates a new instance from the given {@code iterable}. Each iterable entry is mapped from its {@code keyFunction} result to its {@code valueFunction}
+     * result if the given {@code predicate} applies.
      *
      * @param iterable      the entries to be filtered and transformed
      * @param predicate     the predicate to filter the entries with
@@ -132,9 +137,9 @@ public final class ImmutableMaps {
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
     public static <E, K, V> ImmutableMap<K, V> createFrom(final Iterable<E> iterable,
-                                               final Predicate<? super E> predicate,
-                                               final Function<? super E, K> keyFunction,
-                                               final Function<? super E, V> valueFunction) {
+                                                          final Predicate<? super E> predicate,
+                                                          final Function<? super E, K> keyFunction,
+                                                          final Function<? super E, V> valueFunction) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");

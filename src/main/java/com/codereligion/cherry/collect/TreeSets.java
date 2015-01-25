@@ -150,8 +150,8 @@ public final class TreeSets {
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
     public static <F, T extends Comparable<T>> TreeSet<T> createFrom(final Iterable<F> iterable,
-                                                               final Predicate<? super F> predicate,
-                                                               final Function<? super F, T> function) {
+                                                                     final Predicate<? super F> predicate,
+                                                                     final Function<? super F, T> function) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
@@ -181,9 +181,9 @@ public final class TreeSets {
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
     public static <F, T> TreeSet<T> createFrom(final Iterable<F> iterable,
-                                         final Predicate<? super F> predicate,
-                                         final Function<? super F, T> function,
-                                         final Comparator<T> comparator) {
+                                               final Predicate<? super F> predicate,
+                                               final Function<? super F, T> function,
+                                               final Comparator<T> comparator) {
 
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");

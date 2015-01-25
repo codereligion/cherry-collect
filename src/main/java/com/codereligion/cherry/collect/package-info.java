@@ -16,5 +16,4 @@
 /**
  * TODO
  */
-@javax.annotation.ParametersAreNonnullByDefault
-package com.codereligion.cherry.collect;
+@javax.annotation.ParametersAreNonnullByDefault package com.codereligion.cherry.collect;
