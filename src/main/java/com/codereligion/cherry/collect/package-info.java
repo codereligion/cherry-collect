@@ -14,6 +14,6 @@
  * limitations under the License.
  */
 /**
- * TODO
+ * Contains factories for common {@code java.util} and {@code com.google.common.collect} iterable and map implementations.
  */
 @javax.annotation.ParametersAreNonnullByDefault package com.codereligion.cherry.collect;

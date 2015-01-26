@@ -21,7 +21,7 @@ import com.google.common.collect.ImmutableSet;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * Provides static factory methods to create {@link com.google.common.collect.ImmutableSet ImmutableSets}.
+ * Factory for {@link com.google.common.collect.ImmutableSet ImmutableSets}.
  *
  * @author Sebastian Gr&oml;bler
  * @since 28.12.2014
@@ -33,7 +33,7 @@ public final class ImmutableSets {
     }
 
     /**
-     * TODO
+     * Creates a new instance from the given {@code iterable} by converting each entry with the given {@code function}.
      *
      * @param iterable the entries to be transformed
      * @param function the function to transform the entries with
@@ -58,7 +58,7 @@ public final class ImmutableSets {
     }
 
     /**
-     * TODO
+     * Creates a new instance from the given {@code iterable} by only using the entries to which the given {@code predicate} applies.
      *
      * @param iterable  the entries to be filtered
      * @param predicate the predicate to filter the entries with
@@ -83,7 +83,7 @@ public final class ImmutableSets {
     }
 
     /**
-     * TODO
+     * Creates a new instance from the given {@code iterable} by converting each entry with the given {@code function} if the given {@code predicate} applies.
      *
      * @param iterable  the entries to be filtered and transformed
      * @param predicate the predicate to filter the entries with

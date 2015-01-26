@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * Provides static factory methods to create {@link java.util.ArrayList ArrayLists}.
+ * Factory for {@link java.util.ArrayList ArrayLists}.
  *
  * @author Sebastian Gr&oml;bler
  * @since 28.12.2014
@@ -34,7 +34,7 @@ public final class ArrayLists {
     }
 
     /**
-     * TODO
+     * Creates a new instance from the given {@code iterable} by converting each entry with the given {@code function}.
      *
      * @param iterable the entries to be transformed
      * @param function the function to transform the entries with
@@ -59,7 +59,7 @@ public final class ArrayLists {
     }
 
     /**
-     * TODO
+     * Creates a new instance from the given {@code iterable} by only using the entries to which the given {@code predicate} applies.
      *
      * @param iterable  the entries to be filtered
      * @param predicate the predicate to filter the entries with
@@ -86,7 +86,7 @@ public final class ArrayLists {
 
 
     /**
-     * TODO
+     * Creates a new instance from the given {@code iterable} by converting each entry with the given {@code function} if the given {@code predicate} applies.
      *
      * @param iterable  the entries to be filtered and transformed
      * @param predicate the predicate to filter the entries with

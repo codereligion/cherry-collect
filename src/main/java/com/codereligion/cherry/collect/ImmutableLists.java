@@ -33,7 +33,7 @@ public final class ImmutableLists {
     }
 
     /**
-     * TODO
+     * Creates a new instance from the given {@code iterable} by converting each entry with the given {@code function}.
      *
      * @param iterable the entries to be transformed
      * @param function the function to transform the entries with
@@ -58,7 +58,7 @@ public final class ImmutableLists {
     }
 
     /**
-     * TODO
+     * Creates a new instance from the given {@code iterable} by only using the entries to which the given {@code predicate} applies.
      *
      * @param iterable  the entries to be filtered
      * @param predicate the predicate to filter the entries with
@@ -83,7 +83,7 @@ public final class ImmutableLists {
     }
 
     /**
-     * TODO
+     * Creates a new instance from the given {@code iterable} by converting each entry with the given {@code function} if the given {@code predicate} applies.
      *
      * @param iterable  the entries to be filtered and transformed
      * @param predicate the predicate to filter the entries with

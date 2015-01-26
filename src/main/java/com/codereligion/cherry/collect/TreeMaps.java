@@ -23,7 +23,7 @@ import java.util.TreeMap;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * Factory class for {@link java.util.TreeMap TreeMaps}.
+ * Factory for {@link java.util.TreeMap TreeMaps}.
  *
  * @author Sebastian Gr&oml;bler
  * @since 28.12.2014

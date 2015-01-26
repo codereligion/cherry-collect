@@ -22,7 +22,7 @@ import java.util.HashMap;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * Factory class for {@link java.util.HashMap HashMaps}.
+ * Factory for {@link java.util.HashMap HashMaps}.
  *
  * @author Sebastian Gr&oml;bler
  * @since 28.12.2014

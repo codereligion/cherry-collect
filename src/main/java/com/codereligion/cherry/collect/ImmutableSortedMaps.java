@@ -22,7 +22,7 @@ import java.util.Comparator;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * Factory class for {@link com.google.common.collect.ImmutableSortedMap ImmutableSortedMaps}.
+ * Factory for {@link com.google.common.collect.ImmutableSortedMap ImmutableSortedMaps}.
  *
  * @author Sebastian Gr&oml;bler
  * @since 28.12.2014

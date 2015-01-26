@@ -22,7 +22,7 @@ import java.util.LinkedHashMap;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * Factory class for {@link java.util.LinkedHashMap LinkedHashMaps}.
+ * Factory for {@link java.util.LinkedHashMap LinkedHashMaps}.
  *
  * @author Sebastian Gr&oml;bler
  * @since 28.12.2014

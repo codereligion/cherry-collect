@@ -21,7 +21,7 @@ import com.google.common.collect.ArrayListMultimap;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * Factory class for {@link com.google.common.collect.ArrayListMultimap ArrayListMultimaps}.
+ * Factory for {@link com.google.common.collect.ArrayListMultimap ArrayListMultimaps}.
  *
  * @author Sebastian Gr&oml;bler
  * @since 28.12.2014
