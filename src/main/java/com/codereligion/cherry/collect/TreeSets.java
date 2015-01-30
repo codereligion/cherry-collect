@@ -23,9 +23,9 @@ import java.util.TreeSet;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * Provides static factory methods to create {@link java.util.TreeSet TreeSets}.
+ * Factory for {@link java.util.TreeSet TreeSets}.
  *
- * @author Sebastian Gr&oml;bler
+ * @author Sebastian Gr&ouml;bler
  * @since 28.12.2014
  */
 public final class TreeSets {

@@ -23,7 +23,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 /**
  * Factory for {@link com.google.common.collect.ArrayListMultimap ArrayListMultimaps}.
  *
- * @author Sebastian Gr&oml;bler
+ * @author Sebastian Gr&ouml;bler
  * @since 28.12.2014
  */
 public final class ArrayListMultimaps {

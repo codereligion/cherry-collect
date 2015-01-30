@@ -25,7 +25,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 /**
  * Factory for {@link java.util.TreeMap TreeMaps}.
  *
- * @author Sebastian Gr&oml;bler
+ * @author Sebastian Gr&ouml;bler
  * @since 28.12.2014
  */
 public final class TreeMaps {

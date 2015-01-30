@@ -23,9 +23,9 @@ import java.util.SortedSet;
 import static com.google.common.base.Preconditions.checkArgument;
 
 /**
- * Provides static factory methods to create {@link com.google.common.collect.ImmutableSortedSet ImmutableSortedSets}.
+ * Factory for {@link com.google.common.collect.ImmutableSortedSet ImmutableSortedSets}.
  *
- * @author Sebastian Gr&oml;bler
+ * @author Sebastian Gr&ouml;bler
  * @since 28.12.2014
  */
 public final class ImmutableSortedSets {
