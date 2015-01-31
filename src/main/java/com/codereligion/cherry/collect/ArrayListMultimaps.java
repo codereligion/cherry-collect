@@ -70,7 +70,7 @@ public final class ArrayListMultimaps {
      * @return a {@link com.google.common.collect.ArrayListMultimap}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
-    public static <K, V, E> ArrayListMultimap<K, V> createFrom(final Iterable<E> iterable,
+    public static <E, K, V> ArrayListMultimap<K, V> createFrom(final Iterable<E> iterable,
                                                                final Function<? super E, K> keyFunction,
                                                                final Function<? super E, V> valueFunction) {
 
@@ -93,7 +93,7 @@ public final class ArrayListMultimaps {
      * Creates a new instance from the given {@code iterable}. Each iterable entry is mapped by its {@code keyFunction} result if the given {@code predicate}
      * applies.
      *
-     * @param iterable    the entries to be filtered and transformed
+     * @param iterable    the entries to be filtered and mapped
      * @param predicate   the predicate to filter the entries with
      * @param keyFunction the function to retrieve the key from the entry
      * @param <K>         the type of the keys of the resulting map
@@ -125,7 +125,7 @@ public final class ArrayListMultimaps {
      * Creates a new instance from the given {@code iterable}. Each iterable entry is mapped from its {@code keyFunction} result to its {@code valueFunction}
      * result if the given {@code predicate} applies.
      *
-     * @param iterable      the entries to be filtered and transformed
+     * @param iterable      the entries to be filtered and mapped
      * @param predicate     the predicate to filter the entries with
      * @param keyFunction   the function to retrieve the key from the entry
      * @param valueFunction the function to retrieve the value from the entry

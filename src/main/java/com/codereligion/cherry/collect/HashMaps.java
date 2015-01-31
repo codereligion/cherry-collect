@@ -94,7 +94,7 @@ public final class HashMaps {
      * Creates a new instance from the given {@code iterable}. Each iterable entry is mapped by its {@code keyFunction} result if the given {@code predicate}
      * applies.
      *
-     * @param iterable    the entries to be filtered and transformed
+     * @param iterable    the entries to be filtered and mapped
      * @param predicate   the predicate to filter the entries with
      * @param keyFunction the function to retrieve the key from the entry
      * @param <K>         the type of the keys of the resulting map
@@ -124,7 +124,7 @@ public final class HashMaps {
      * Creates a new instance from the given {@code iterable}. Each iterable entry is mapped from its {@code keyFunction} result to its {@code valueFunction}
      * result if the given {@code predicate} applies.
      *
-     * @param iterable      the entries to be filtered and transformed
+     * @param iterable      the entries to be filtered and mapped
      * @param predicate     the predicate to filter the entries with
      * @param keyFunction   the function to retrieve the key from the entry
      * @param valueFunction the function to retrieve the value from the entry
