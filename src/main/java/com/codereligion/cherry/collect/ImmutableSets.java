@@ -39,7 +39,7 @@ public final class ImmutableSets {
      * @param function the function to transform the entries with
      * @param <F>      the type of the entries to be transformed
      * @param <T>      the type of the resulting entries
-     * @return a {@link com.google.common.collect.ImmutableSet}, might be empty
+     * @return an {@link com.google.common.collect.ImmutableSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
     public static <F, T> ImmutableSet<T> createFrom(final Iterable<F> iterable, final Function<? super F, T> function) {
@@ -63,7 +63,7 @@ public final class ImmutableSets {
      * @param iterable  the entries to be filtered
      * @param predicate the predicate to filter the entries with
      * @param <E>       the type of the entries to be filtered
-     * @return a {@link com.google.common.collect.ImmutableSet}, might be empty
+     * @return an {@link com.google.common.collect.ImmutableSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
     public static <E> ImmutableSet<E> createFrom(final Iterable<E> iterable, final Predicate<? super E> predicate) {
@@ -90,7 +90,7 @@ public final class ImmutableSets {
      * @param function  the function to transform the entries with
      * @param <F>       the type of the entries to be transformed
      * @param <T>       the type of the resulting entries
-     * @return a {@link com.google.common.collect.ImmutableSet}, might be empty
+     * @return an {@link com.google.common.collect.ImmutableSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
     public static <F, T> ImmutableSet<T> createFrom(final Iterable<F> iterable, final Predicate<? super F> predicate, final Function<? super F, T> function) {

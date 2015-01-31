@@ -41,7 +41,7 @@ public final class ImmutableSortedSets {
      * @param function the function to transform the entries with
      * @param <F>      the type of the entries to be transformed
      * @param <T>      the type of the resulting entries
-     * @return a {@link com.google.common.collect.ImmutableSortedSet}, might be empty
+     * @return an {@link com.google.common.collect.ImmutableSortedSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
     public static <F, T extends Comparable<T>> ImmutableSortedSet<T> createFrom(final Iterable<F> iterable, final Function<? super F, T> function) {
@@ -68,7 +68,7 @@ public final class ImmutableSortedSets {
      * @param comparator the comparator to sort the resulting set with
      * @param <F>        the type of the entries to be transformed
      * @param <T>        the type of the resulting entries
-     * @return a {@link com.google.common.collect.ImmutableSortedSet}, might be empty
+     * @return an {@link com.google.common.collect.ImmutableSortedSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
     public static <F, T> ImmutableSortedSet<T> createFrom(final Iterable<F> iterable, final Function<? super F, T> function, final Comparator<T> comparator) {
@@ -93,7 +93,7 @@ public final class ImmutableSortedSets {
      * @param iterable  the entries to be filtered
      * @param predicate the predicate to filter the entries with
      * @param <E>       the type of the entries to be filtered
-     * @return a {@link com.google.common.collect.ImmutableSortedSet}, might be empty
+     * @return an {@link com.google.common.collect.ImmutableSortedSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
     public static <E extends Comparable<E>> ImmutableSortedSet<E> createFrom(final Iterable<E> iterable, final Predicate<? super E> predicate) {
@@ -120,7 +120,7 @@ public final class ImmutableSortedSets {
      * @param predicate  the predicate to filter the entries with
      * @param comparator the comparator to sort the resulting set with
      * @param <E>        the type of the entries to be filtered
-     * @return a {@link com.google.common.collect.ImmutableSortedSet}, might be empty
+     * @return an {@link com.google.common.collect.ImmutableSortedSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
     public static <E> SortedSet<E> createFrom(final Iterable<E> iterable, final Predicate<? super E> predicate, final Comparator<E> comparator) {
@@ -148,7 +148,7 @@ public final class ImmutableSortedSets {
      * @param function  the function to transform the entries with
      * @param <F>       the type of the entries to be transformed
      * @param <T>       the type of the resulting entries
-     * @return a {@link com.google.common.collect.ImmutableSortedSet}, might be empty
+     * @return an {@link com.google.common.collect.ImmutableSortedSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
     public static <F, T extends Comparable<T>> ImmutableSortedSet<T> createFrom(final Iterable<F> iterable,
@@ -181,7 +181,7 @@ public final class ImmutableSortedSets {
      * @param comparator the comparator to sort the resulting set with
      * @param <F>        the type of the entries to be transformed
      * @param <T>        the type of the resulting entries
-     * @return a {@link com.google.common.collect.ImmutableSortedSet}, might be empty
+     * @return an {@link com.google.common.collect.ImmutableSortedSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
      */
     public static <F, T> ImmutableSortedSet<T> createFrom(final Iterable<F> iterable,

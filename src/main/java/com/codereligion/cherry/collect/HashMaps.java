@@ -64,7 +64,7 @@ public final class HashMaps {
      * @param iterable      the entries to be mapped
      * @param keyFunction   the function to retrieve the map key from an entry
      * @param valueFunction the function to retrieve the map value from an entry
-     * @param <E>           the type of the entries provided by the given {@code iterable}
+     * @param <E>           the type of the entries of the given {@code iterable}
      * @param <K>           the type of the keys of the resulting map
      * @param <V>           the type of the values of the resulting map
      * @return a {@link java.util.HashMap}, might be empty
@@ -91,12 +91,12 @@ public final class HashMaps {
 
 
     /**
-     * Creates a new instance from the given {@code iterable}. Each iterable entry is mapped by its {@code keyFunction} result if the given {@code predicate}
+     * Creates a new instance from the given {@code iterable}. Each iterable entry is mapped by its {@code keyFunction} result, if the given {@code predicate}
      * applies.
      *
      * @param iterable    the entries to be filtered and mapped
      * @param predicate   the predicate to filter the entries with
-     * @param keyFunction the function to retrieve the key from the entry
+     * @param keyFunction the function to retrieve the map key from an entry
      * @param <K>         the type of the keys of the resulting map
      * @param <V>         the type of the values of the resulting map
      * @return a {@link java.util.HashMap}, might be empty
@@ -122,13 +122,13 @@ public final class HashMaps {
 
     /**
      * Creates a new instance from the given {@code iterable}. Each iterable entry is mapped from its {@code keyFunction} result to its {@code valueFunction}
-     * result if the given {@code predicate} applies.
+     * result, if the given {@code predicate} applies.
      *
      * @param iterable      the entries to be filtered and mapped
      * @param predicate     the predicate to filter the entries with
-     * @param keyFunction   the function to retrieve the key from the entry
-     * @param valueFunction the function to retrieve the value from the entry
-     * @param <E>           the type of the entries provided by the given {@code iterable}
+     * @param keyFunction   the function to retrieve the map key from an entry
+     * @param valueFunction the function to retrieve the map value from an entry
+     * @param <E>           the type of the entries of the given {@code iterable}
      * @param <K>           the type of the keys of the resulting map
      * @param <V>           the type of the values of the resulting map
      * @return a {@link java.util.HashMap}, might be empty
