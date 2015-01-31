@@ -39,7 +39,7 @@ public final class TreeSets {
      *
      * @param iterable the entries to be transformed
      * @param function the function to transform the entries with
-     * @param <F>      the type of the entries to be transformed
+     * @param <F>      the type of the entries of the given {@code iterable}
      * @param <T>      the type of the resulting entries
      * @return a {@link java.util.TreeSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
@@ -66,7 +66,7 @@ public final class TreeSets {
      * @param iterable   the entries to be transformed
      * @param function   the function to transform the entries with
      * @param comparator the comparator to sort the resulting set with
-     * @param <F>        the type of the entries to be transformed
+     * @param <F>        the type of the entries of the given {@code iterable}
      * @param <T>        the type of the resulting entries
      * @return a {@link java.util.TreeSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
@@ -141,12 +141,12 @@ public final class TreeSets {
     }
 
     /**
-     * Creates a new instance from the given {@code iterable} by converting each entry with the given {@code function} if the given {@code predicate} applies.
+     * Creates a new instance from the given {@code iterable} by converting each entry with the given {@code function}, if the given {@code predicate} applies.
      *
      * @param iterable  the entries to be filtered and transformed
      * @param predicate the predicate to filter the entries with
      * @param function  the function to transform the entries with
-     * @param <F>       the type of the entries to be transformed
+     * @param <F>       the type of the entries of the given {@code iterable}
      * @param <T>       the type of the resulting entries
      * @return a {@link java.util.TreeSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
@@ -172,14 +172,14 @@ public final class TreeSets {
     }
 
     /**
-     * Creates a new instance from the given {@code iterable} by converting each entry with the given {@code function} if the given {@code predicate} applies.
+     * Creates a new instance from the given {@code iterable} by converting each entry with the given {@code function}, if the given {@code predicate} applies.
      * The resulting set is ordered by the given {@code comparator}.
      *
      * @param iterable   the entries to be filtered and transformed
      * @param predicate  the predicate to filter the entries with
      * @param function   the function to transform the entries with
      * @param comparator the comparator to sort the resulting set with
-     * @param <F>        the type of the entries to be transformed
+     * @param <F>        the type of the entries of the given {@code iterable}
      * @param <T>        the type of the resulting entries
      * @return a {@link java.util.TreeSet}, might be empty
      * @throws IllegalArgumentException when any of the given parameters are {@code null}
