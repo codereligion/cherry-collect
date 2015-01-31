@@ -17,7 +17,6 @@ package com.codereligion.cherry.collect;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
-import com.google.common.collect.Lists;
 import java.util.ArrayList;
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -48,7 +47,7 @@ public final class ArrayLists {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final ArrayList<T> transformed = Lists.newArrayList();
+        final ArrayList<T> transformed = new ArrayList<T>();
 
         for (final F f : iterable) {
             final T t = function.apply(f);
@@ -72,15 +71,13 @@ public final class ArrayLists {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
 
-
-        final ArrayList<E> filtered = Lists.newArrayList();
+        final ArrayList<E> filtered = new ArrayList<E>();
 
         for (final E e : iterable) {
             if (predicate.apply(e)) {
                 filtered.add(e);
             }
         }
-
         return filtered;
     }
 
@@ -102,7 +99,7 @@ public final class ArrayLists {
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final ArrayList<T> transformed = Lists.newArrayList();
+        final ArrayList<T> transformed = new ArrayList<T>();
 
         for (final F f : iterable) {
             if (predicate.apply(f)) {

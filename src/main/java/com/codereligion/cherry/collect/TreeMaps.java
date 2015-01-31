@@ -17,7 +17,6 @@ package com.codereligion.cherry.collect;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
-import com.google.common.collect.Maps;
 import java.util.Comparator;
 import java.util.TreeMap;
 import static com.google.common.base.Preconditions.checkArgument;
@@ -49,7 +48,7 @@ public final class TreeMaps {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
 
-        final TreeMap<K, V> map = Maps.newTreeMap();
+        final TreeMap<K, V> map = new TreeMap<K, V>();
 
         for (final V value : iterable) {
             final K key = keyFunction.apply(value);
@@ -108,7 +107,7 @@ public final class TreeMaps {
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(valueFunction != null, "valueFunction must not be null.");
 
-        final TreeMap<K, V> map = Maps.newTreeMap();
+        final TreeMap<K, V> map = new TreeMap<K, V>();
 
         for (final E entry : iterable) {
             final K key = keyFunction.apply(entry);
@@ -174,7 +173,7 @@ public final class TreeMaps {
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
 
-        final TreeMap<K, V> map = Maps.newTreeMap();
+        final TreeMap<K, V> map = new TreeMap<K, V>();
 
         for (final V entry : iterable) {
             if (predicate.apply(entry)) {
@@ -244,7 +243,7 @@ public final class TreeMaps {
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(valueFunction != null, "valueFunction must not be null.");
 
-        final TreeMap<K, V> map = Maps.newTreeMap();
+        final TreeMap<K, V> map = new TreeMap<K, V>();
 
         for (final E entry : iterable) {
             if (predicate.apply(entry)) {

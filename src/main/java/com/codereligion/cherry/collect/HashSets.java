@@ -17,7 +17,6 @@ package com.codereligion.cherry.collect;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
-import com.google.common.collect.Sets;
 import java.util.HashSet;
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -48,7 +47,7 @@ public final class HashSets {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final HashSet<T> transformed = Sets.newHashSet();
+        final HashSet<T> transformed = new HashSet<T>();
 
         for (final F f : iterable) {
             final T t = function.apply(f);
@@ -72,7 +71,7 @@ public final class HashSets {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
 
-        final HashSet<E> filtered = Sets.newHashSet();
+        final HashSet<E> filtered = new HashSet<E>();
 
         for (final E e : iterable) {
             if (predicate.apply(e)) {
@@ -100,7 +99,7 @@ public final class HashSets {
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final HashSet<T> transformed = Sets.newHashSet();
+        final HashSet<T> transformed = new HashSet<T>();
 
         for (final F f : iterable) {
             if (predicate.apply(f)) {

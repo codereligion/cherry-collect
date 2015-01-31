@@ -17,7 +17,6 @@ package com.codereligion.cherry.collect;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
-import com.google.common.collect.Maps;
 import java.util.HashMap;
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -48,7 +47,7 @@ public final class HashMaps {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
 
-        final HashMap<K, V> map = Maps.newHashMap();
+        final HashMap<K, V> map = new HashMap<K, V>();
 
         for (final V value : iterable) {
             final K key = keyFunction.apply(value);
@@ -79,7 +78,7 @@ public final class HashMaps {
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(valueFunction != null, "valueFunction must not be null.");
 
-        final HashMap<K, V> map = Maps.newHashMap();
+        final HashMap<K, V> map = new HashMap<K, V>();
 
         for (final E entry : iterable) {
             final K key = keyFunction.apply(entry);
@@ -109,7 +108,7 @@ public final class HashMaps {
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
 
-        final HashMap<K, V> map = Maps.newHashMap();
+        final HashMap<K, V> map = new HashMap<K, V>();
 
         for (final V entry : iterable) {
             if (predicate.apply(entry)) {
@@ -145,7 +144,7 @@ public final class HashMaps {
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(valueFunction != null, "valueFunction must not be null.");
 
-        final HashMap<K, V> map = Maps.newHashMap();
+        final HashMap<K, V> map = new HashMap<K, V>();
 
         for (final E entry : iterable) {
             if (predicate.apply(entry)) {

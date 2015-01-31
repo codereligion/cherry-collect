@@ -17,7 +17,6 @@ package com.codereligion.cherry.collect;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
-import com.google.common.collect.Lists;
 import java.util.LinkedList;
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -48,7 +47,7 @@ public final class LinkedLists {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final LinkedList<T> transformed = Lists.newLinkedList();
+        final LinkedList<T> transformed = new LinkedList<T>();
 
         for (final F f : iterable) {
             final T t = function.apply(f);
@@ -73,7 +72,7 @@ public final class LinkedLists {
         checkArgument(predicate != null, "predicate must not be null.");
 
 
-        final LinkedList<E> filtered = Lists.newLinkedList();
+        final LinkedList<E> filtered = new LinkedList<E>();
 
         for (final E e : iterable) {
             if (predicate.apply(e)) {
@@ -101,7 +100,7 @@ public final class LinkedLists {
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final LinkedList<T> transformed = Lists.newLinkedList();
+        final LinkedList<T> transformed = new LinkedList<T>();
 
         for (final F f : iterable) {
             if (predicate.apply(f)) {

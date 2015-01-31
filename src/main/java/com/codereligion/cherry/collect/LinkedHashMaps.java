@@ -17,7 +17,6 @@ package com.codereligion.cherry.collect;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
-import com.google.common.collect.Maps;
 import java.util.LinkedHashMap;
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -48,7 +47,7 @@ public final class LinkedHashMaps {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
 
-        final LinkedHashMap<K, V> map = Maps.newLinkedHashMap();
+        final LinkedHashMap<K, V> map = new LinkedHashMap<K, V>();
 
         for (final V value : iterable) {
             final K key = keyFunction.apply(value);
@@ -79,7 +78,7 @@ public final class LinkedHashMaps {
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(valueFunction != null, "valueFunction must not be null.");
 
-        final LinkedHashMap<K, V> map = Maps.newLinkedHashMap();
+        final LinkedHashMap<K, V> map = new LinkedHashMap<K, V>();
 
         for (final E entry : iterable) {
             final K key = keyFunction.apply(entry);
@@ -111,7 +110,7 @@ public final class LinkedHashMaps {
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
 
-        final LinkedHashMap<K, V> map = Maps.newLinkedHashMap();
+        final LinkedHashMap<K, V> map = new LinkedHashMap<K, V>();
 
         for (final V entry : iterable) {
             if (predicate.apply(entry)) {
@@ -147,7 +146,7 @@ public final class LinkedHashMaps {
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(valueFunction != null, "valueFunction must not be null.");
 
-        final LinkedHashMap<K, V> map = Maps.newLinkedHashMap();
+        final LinkedHashMap<K, V> map = new LinkedHashMap<K, V>();
 
         for (final E entry : iterable) {
             if (predicate.apply(entry)) {
