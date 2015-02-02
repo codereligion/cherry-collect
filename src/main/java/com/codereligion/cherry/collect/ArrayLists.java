@@ -49,10 +49,7 @@ public final class ArrayLists {
 
         final ArrayList<T> transformed = new ArrayList<T>();
 
-        for (final F f : iterable) {
-            final T t = function.apply(f);
-            transformed.add(t);
-        }
+        OptimizedIterations.createFrom(iterable, function, transformed);
 
         return transformed;
     }
@@ -73,14 +70,10 @@ public final class ArrayLists {
 
         final ArrayList<E> filtered = new ArrayList<E>();
 
-        for (final E e : iterable) {
-            if (predicate.apply(e)) {
-                filtered.add(e);
-            }
-        }
+        OptimizedIterations.createFrom(iterable, predicate, filtered);
+
         return filtered;
     }
-
 
     /**
      * Creates a new instance from the given {@code iterable} by converting each entry with the given {@code function}, if the given {@code predicate} applies.
@@ -101,12 +94,7 @@ public final class ArrayLists {
 
         final ArrayList<T> transformed = new ArrayList<T>();
 
-        for (final F f : iterable) {
-            if (predicate.apply(f)) {
-                final T t = function.apply(f);
-                transformed.add(t);
-            }
-        }
+        OptimizedIterations.createFrom(iterable, predicate, function, transformed);
 
         return transformed;
     }
