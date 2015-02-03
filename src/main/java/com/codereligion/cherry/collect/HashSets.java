@@ -47,14 +47,7 @@ public final class HashSets {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final HashSet<T> transformed = new HashSet<T>();
-
-        for (final F f : iterable) {
-            final T t = function.apply(f);
-            transformed.add(t);
-        }
-
-        return transformed;
+        return OptimizedIterations.createFrom(iterable, function, new HashSet<T>());
     }
 
     /**
@@ -71,15 +64,7 @@ public final class HashSets {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
 
-        final HashSet<E> filtered = new HashSet<E>();
-
-        for (final E e : iterable) {
-            if (predicate.apply(e)) {
-                filtered.add(e);
-            }
-        }
-
-        return filtered;
+        return OptimizedIterations.createFrom(iterable, predicate, new HashSet<E>());
     }
 
     /**
@@ -99,16 +84,7 @@ public final class HashSets {
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final HashSet<T> transformed = new HashSet<T>();
-
-        for (final F f : iterable) {
-            if (predicate.apply(f)) {
-                final T t = function.apply(f);
-                transformed.add(t);
-            }
-        }
-
-        return transformed;
+        return OptimizedIterations.createFrom(iterable, predicate, function, new HashSet<T>());
     }
 
 }

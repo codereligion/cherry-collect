@@ -47,11 +47,7 @@ public final class ArrayLists {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final ArrayList<T> transformed = new ArrayList<T>();
-
-        OptimizedIterations.createFrom(iterable, function, transformed);
-
-        return transformed;
+        return OptimizedIterations.createFrom(iterable, function, new ArrayList<T>());
     }
 
     /**
@@ -68,11 +64,7 @@ public final class ArrayLists {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
 
-        final ArrayList<E> filtered = new ArrayList<E>();
-
-        OptimizedIterations.createFrom(iterable, predicate, filtered);
-
-        return filtered;
+        return OptimizedIterations.createFrom(iterable, predicate, new ArrayList<E>());
     }
 
     /**
@@ -92,10 +84,6 @@ public final class ArrayLists {
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final ArrayList<T> transformed = new ArrayList<T>();
-
-        OptimizedIterations.createFrom(iterable, predicate, function, transformed);
-
-        return transformed;
+        return OptimizedIterations.createFrom(iterable, predicate, function, new ArrayList<T>());
     }
 }

@@ -21,9 +21,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class OptimizedIterations {
+final class OptimizedIterations {
 
-    static <F, T> void createFrom(final Iterable<F> inputIterable, final Function<? super F, T> function, final Collection<T> outputCollection) {
+    private OptimizedIterations() {
+        throw new IllegalAccessError("This class is a utility class and must not be instantiated.");
+    }
+
+    static <F, T, C extends Collection<T>> C createFrom(final Iterable<F> inputIterable, final Function<? super F, T> function, final C outputCollection) {
 
         if (inputIterable instanceof ArrayList) {
             final List<F> list = (List<F>) inputIterable;
@@ -35,9 +39,10 @@ public class OptimizedIterations {
                 outputCollection.add(function.apply(f));
             }
         }
+        return outputCollection;
     }
 
-    static <E> void createFrom(final Iterable<E> inputIterable, final Predicate<? super E> predicate, final Collection<E> outputCollection) {
+    static <E, C extends Collection<E>> C createFrom(final Iterable<E> inputIterable, final Predicate<? super E> predicate, final C outputCollection) {
 
         if (inputIterable instanceof ArrayList) {
             final List<E> list = (List<E>) inputIterable;
@@ -54,12 +59,13 @@ public class OptimizedIterations {
                 }
             }
         }
+        return outputCollection;
     }
 
-    static <F, T> void createFrom(final Iterable<F> inputIterable,
-                                  final Predicate<? super F> predicate,
-                                  final Function<? super F, T> function,
-                                  final Collection<T> outputCollection) {
+    static <F, T, C extends Collection<T>> C createFrom(final Iterable<F> inputIterable,
+                                           final Predicate<? super F> predicate,
+                                           final Function<? super F, T> function,
+                                           final C outputCollection) {
         if (inputIterable instanceof ArrayList) {
             final List<F> list = (List<F>) inputIterable;
             for (int i = 0; i < list.size(); i++) {
@@ -75,5 +81,6 @@ public class OptimizedIterations {
                 }
             }
         }
+        return outputCollection;
     }
 }
