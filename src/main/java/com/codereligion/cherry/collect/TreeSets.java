@@ -49,14 +49,7 @@ public final class TreeSets {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final TreeSet<T> transformed = new TreeSet<T>();
-
-        for (final F f : iterable) {
-            final T t = function.apply(f);
-            transformed.add(t);
-        }
-
-        return transformed;
+        return OptimizedIterations.createFrom(iterable, function, new TreeSet<T>());
     }
 
     /**
@@ -77,14 +70,7 @@ public final class TreeSets {
         checkArgument(function != null, "function must not be null.");
         checkArgument(comparator != null, "comparator must not be null.");
 
-        final TreeSet<T> transformed = new TreeSet<T>(comparator);
-
-        for (final F f : iterable) {
-            final T t = function.apply(f);
-            transformed.add(t);
-        }
-
-        return transformed;
+        return OptimizedIterations.createFrom(iterable, function, new TreeSet<T>(comparator));
     }
 
     /**
@@ -101,15 +87,7 @@ public final class TreeSets {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
 
-        final TreeSet<E> filtered = new TreeSet<E>();
-
-        for (final E e : iterable) {
-            if (predicate.apply(e)) {
-                filtered.add(e);
-            }
-        }
-
-        return filtered;
+        return OptimizedIterations.createFrom(iterable, predicate, new TreeSet<E>());
     }
 
     /**
@@ -129,15 +107,7 @@ public final class TreeSets {
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(comparator != null, "comparator must not be null.");
 
-        final SortedSet<E> filtered = new TreeSet<E>(comparator);
-
-        for (final E e : iterable) {
-            if (predicate.apply(e)) {
-                filtered.add(e);
-            }
-        }
-
-        return filtered;
+        return OptimizedIterations.createFrom(iterable, predicate, new TreeSet<E>(comparator));
     }
 
     /**
@@ -159,16 +129,7 @@ public final class TreeSets {
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final TreeSet<T> transformed = new TreeSet<T>();
-
-        for (final F f : iterable) {
-            if (predicate.apply(f)) {
-                final T t = function.apply(f);
-                transformed.add(t);
-            }
-        }
-
-        return transformed;
+        return OptimizedIterations.createFrom(iterable, predicate, function, new TreeSet<T>());
     }
 
     /**
@@ -194,15 +155,6 @@ public final class TreeSets {
         checkArgument(function != null, "function must not be null.");
         checkArgument(comparator != null, "comparator must not be null.");
 
-        final TreeSet<T> transformed = new TreeSet<T>(comparator);
-
-        for (final F f : iterable) {
-            if (predicate.apply(f)) {
-                final T t = function.apply(f);
-                transformed.add(t);
-            }
-        }
-
-        return transformed;
+        return OptimizedIterations.createFrom(iterable, predicate, function, new TreeSet<T>(comparator));
     }
 }

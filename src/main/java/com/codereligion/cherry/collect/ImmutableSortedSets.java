@@ -49,14 +49,7 @@ public final class ImmutableSortedSets {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final ImmutableSortedSet.Builder<T> builder = ImmutableSortedSet.naturalOrder();
-
-        for (final F f : iterable) {
-            final T t = function.apply(f);
-            builder.add(t);
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, function, ImmutableSortedSet.<T>naturalOrder()).build();
     }
 
     /**
@@ -77,14 +70,7 @@ public final class ImmutableSortedSets {
         checkArgument(function != null, "function must not be null.");
         checkArgument(comparator != null, "comparator must not be null.");
 
-        final ImmutableSortedSet.Builder<T> builder = ImmutableSortedSet.orderedBy(comparator);
-
-        for (final F f : iterable) {
-            final T t = function.apply(f);
-            builder.add(t);
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, function, ImmutableSortedSet.orderedBy(comparator)).build();
     }
 
     /**
@@ -101,15 +87,7 @@ public final class ImmutableSortedSets {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
 
-        final ImmutableSortedSet.Builder<E> builder = ImmutableSortedSet.naturalOrder();
-
-        for (final E e : iterable) {
-            if (predicate.apply(e)) {
-                builder.add(e);
-            }
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, predicate, ImmutableSortedSet.<E>naturalOrder()).build();
     }
 
     /**
@@ -129,15 +107,7 @@ public final class ImmutableSortedSets {
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(comparator != null, "comparator must not be null.");
 
-        final ImmutableSortedSet.Builder<E> builder = ImmutableSortedSet.orderedBy(comparator);
-
-        for (final E e : iterable) {
-            if (predicate.apply(e)) {
-                builder.add(e);
-            }
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, predicate, ImmutableSortedSet.orderedBy(comparator)).build();
     }
 
     /**
@@ -159,16 +129,7 @@ public final class ImmutableSortedSets {
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final ImmutableSortedSet.Builder<T> builder = ImmutableSortedSet.naturalOrder();
-
-        for (final F f : iterable) {
-            if (predicate.apply(f)) {
-                final T t = function.apply(f);
-                builder.add(t);
-            }
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, predicate, function, ImmutableSortedSet.<T>naturalOrder()).build();
     }
 
     /**
@@ -194,16 +155,7 @@ public final class ImmutableSortedSets {
         checkArgument(function != null, "function must not be null.");
         checkArgument(comparator != null, "comparator must not be null.");
 
-        final ImmutableSortedSet.Builder<T> builder = ImmutableSortedSet.orderedBy(comparator);
-
-        for (final F f : iterable) {
-            if (predicate.apply(f)) {
-                final T t = function.apply(f);
-                builder.add(t);
-            }
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, predicate, function, ImmutableSortedSet.orderedBy(comparator)).build();
     }
 
 }
