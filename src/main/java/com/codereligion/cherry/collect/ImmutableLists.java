@@ -47,14 +47,7 @@ public final class ImmutableLists {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final ImmutableList.Builder<T> builder = ImmutableList.builder();
-
-        for (final F f : iterable) {
-            final T t = function.apply(f);
-            builder.add(t);
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, function, ImmutableList.<T>builder()).build();
     }
 
     /**
@@ -71,15 +64,7 @@ public final class ImmutableLists {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
 
-        final ImmutableList.Builder<E> builder = ImmutableList.builder();
-
-        for (final E e : iterable) {
-            if (predicate.apply(e)) {
-                builder.add(e);
-            }
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, predicate, ImmutableList.<E>builder()).build();
     }
 
     /**
@@ -99,16 +84,7 @@ public final class ImmutableLists {
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final ImmutableList.Builder<T> builder = ImmutableList.builder();
-
-        for (final F f : iterable) {
-            if (predicate.apply(f)) {
-                final T t = function.apply(f);
-                builder.add(t);
-            }
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, predicate, function, ImmutableList.<T>builder()).build();
     }
 
 }

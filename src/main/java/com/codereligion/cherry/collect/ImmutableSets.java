@@ -47,14 +47,7 @@ public final class ImmutableSets {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final ImmutableSet.Builder<T> builder = ImmutableSet.builder();
-
-        for (final F f : iterable) {
-            final T t = function.apply(f);
-            builder.add(t);
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, function, ImmutableSet.<T>builder()).build();
     }
 
     /**
@@ -71,15 +64,7 @@ public final class ImmutableSets {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(predicate != null, "predicate must not be null.");
 
-        final ImmutableSet.Builder<E> builder = ImmutableSet.builder();
-
-        for (final E e : iterable) {
-            if (predicate.apply(e)) {
-                builder.add(e);
-            }
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, predicate, ImmutableSet.<E>builder()).build();
     }
 
     /**
@@ -99,16 +84,7 @@ public final class ImmutableSets {
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(function != null, "function must not be null.");
 
-        final ImmutableSet.Builder<T> builder = ImmutableSet.builder();
-
-        for (final F f : iterable) {
-            if (predicate.apply(f)) {
-                final T t = function.apply(f);
-                builder.add(t);
-            }
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, predicate, function, ImmutableSet.<T>builder()).build();
     }
 
 }

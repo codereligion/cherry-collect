@@ -17,6 +17,7 @@ package com.codereligion.cherry.collect;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
+import com.google.common.collect.ImmutableCollection;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -63,9 +64,9 @@ final class OptimizedIterations {
     }
 
     static <F, T, C extends Collection<T>> C createFrom(final Iterable<F> inputIterable,
-                                           final Predicate<? super F> predicate,
-                                           final Function<? super F, T> function,
-                                           final C outputCollection) {
+                                                        final Predicate<? super F> predicate,
+                                                        final Function<? super F, T> function,
+                                                        final C outputCollection) {
         if (inputIterable instanceof ArrayList) {
             final List<F> list = (List<F>) inputIterable;
             for (int i = 0; i < list.size(); i++) {
@@ -82,5 +83,64 @@ final class OptimizedIterations {
             }
         }
         return outputCollection;
+    }
+
+    static <F, T, B extends ImmutableCollection.Builder<T>> B createFrom(final Iterable<F> inputIterable,
+                                                                         final Function<? super F, T> function,
+                                                                         final B builder) {
+
+        if (inputIterable instanceof ArrayList) {
+            final List<F> list = (List<F>) inputIterable;
+            for (int i = 0; i < list.size(); i++) {
+                builder.add(function.apply(list.get(i)));
+            }
+        } else {
+            for (final F f : inputIterable) {
+                builder.add(function.apply(f));
+            }
+        }
+        return builder;
+    }
+
+    static <E, B extends ImmutableCollection.Builder<E>> B createFrom(final Iterable<E> inputIterable, final Predicate<? super E> predicate, final B builder) {
+
+        if (inputIterable instanceof ArrayList) {
+            final List<E> list = (List<E>) inputIterable;
+            for (int i = 0; i < list.size(); i++) {
+                final E e = list.get(i);
+                if (predicate.apply(e)) {
+                    builder.add(e);
+                }
+            }
+        } else {
+            for (final E e : inputIterable) {
+                if (predicate.apply(e)) {
+                    builder.add(e);
+                }
+            }
+        }
+        return builder;
+    }
+
+    static <F, T, B extends ImmutableCollection.Builder<T>> B createFrom(final Iterable<F> inputIterable,
+                                                                         final Predicate<? super F> predicate,
+                                                                         final Function<? super F, T> function,
+                                                                         final B builder) {
+        if (inputIterable instanceof ArrayList) {
+            final List<F> list = (List<F>) inputIterable;
+            for (int i = 0; i < list.size(); i++) {
+                final F f = list.get(i);
+                if (predicate.apply(f)) {
+                    builder.add(function.apply(f));
+                }
+            }
+        } else {
+            for (final F f : inputIterable) {
+                if (predicate.apply(f)) {
+                    builder.add(function.apply(f));
+                }
+            }
+        }
+        return builder;
     }
 }
