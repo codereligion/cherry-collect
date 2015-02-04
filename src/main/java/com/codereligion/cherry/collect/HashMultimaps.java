@@ -47,14 +47,7 @@ public final class HashMultimaps {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
 
-        final HashMultimap<K, V> map = HashMultimap.create();
-
-        for (final V value : iterable) {
-            final K key = keyFunction.apply(value);
-            map.put(key, value);
-        }
-
-        return map;
+        return OptimizedIterations.createFrom(iterable, keyFunction, HashMultimap.<K, V>create());
     }
 
     /**
@@ -78,15 +71,7 @@ public final class HashMultimaps {
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(valueFunction != null, "valueFunction must not be null.");
 
-        final HashMultimap<K, V> map = HashMultimap.create();
-
-        for (final E entry : iterable) {
-            final K key = keyFunction.apply(entry);
-            final V value = valueFunction.apply(entry);
-            map.put(key, value);
-        }
-
-        return map;
+        return OptimizedIterations.createFrom(iterable, keyFunction, valueFunction, HashMultimap.<K, V>create());
     }
 
     /**
@@ -109,16 +94,7 @@ public final class HashMultimaps {
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
 
-        final HashMultimap<K, V> map = HashMultimap.create();
-
-        for (final V entry : iterable) {
-            if (predicate.apply(entry)) {
-                final K key = keyFunction.apply(entry);
-                map.put(key, entry);
-            }
-        }
-
-        return map;
+        return OptimizedIterations.createFrom(iterable, predicate, keyFunction, HashMultimap.<K, V>create());
     }
 
     /**
@@ -145,16 +121,6 @@ public final class HashMultimaps {
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(valueFunction != null, "valueFunction must not be null.");
 
-        final HashMultimap<K, V> map = HashMultimap.create();
-
-        for (final E entry : iterable) {
-            if (predicate.apply(entry)) {
-                final K key = keyFunction.apply(entry);
-                final V value = valueFunction.apply(entry);
-                map.put(key, value);
-            }
-        }
-
-        return map;
+        return OptimizedIterations.createFrom(iterable, predicate, keyFunction, valueFunction, HashMultimap.<K, V>create());
     }
 }

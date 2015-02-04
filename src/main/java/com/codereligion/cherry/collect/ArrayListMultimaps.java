@@ -47,14 +47,7 @@ public final class ArrayListMultimaps {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
 
-        final ArrayListMultimap<K, V> map = ArrayListMultimap.create();
-
-        for (final V value : iterable) {
-            final K key = keyFunction.apply(value);
-            map.put(key, value);
-        }
-
-        return map;
+        return OptimizedIterations.createFrom(iterable, keyFunction, ArrayListMultimap.<K, V>create());
     }
 
     /**
@@ -78,15 +71,7 @@ public final class ArrayListMultimaps {
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(valueFunction != null, "valueFunction must not be null.");
 
-        final ArrayListMultimap<K, V> map = ArrayListMultimap.create();
-
-        for (final E entry : iterable) {
-            final K key = keyFunction.apply(entry);
-            final V value = valueFunction.apply(entry);
-            map.put(key, value);
-        }
-
-        return map;
+        return OptimizedIterations.createFrom(iterable, keyFunction, valueFunction, ArrayListMultimap.<K, V>create());
     }
 
     /**
@@ -109,16 +94,7 @@ public final class ArrayListMultimaps {
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
 
-        final ArrayListMultimap<K, V> map = ArrayListMultimap.create();
-
-        for (final V entry : iterable) {
-            if (predicate.apply(entry)) {
-                final K key = keyFunction.apply(entry);
-                map.put(key, entry);
-            }
-        }
-
-        return map;
+        return OptimizedIterations.createFrom(iterable, predicate, keyFunction, ArrayListMultimap.<K, V>create());
     }
 
     /**
@@ -145,16 +121,6 @@ public final class ArrayListMultimaps {
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(valueFunction != null, "valueFunction must not be null.");
 
-        final ArrayListMultimap<K, V> map = ArrayListMultimap.create();
-
-        for (final E entry : iterable) {
-            if (predicate.apply(entry)) {
-                final K key = keyFunction.apply(entry);
-                final V value = valueFunction.apply(entry);
-                map.put(key, value);
-            }
-        }
-
-        return map;
+        return OptimizedIterations.createFrom(iterable, predicate, keyFunction, valueFunction, ArrayListMultimap.<K, V>create());
     }
 }
