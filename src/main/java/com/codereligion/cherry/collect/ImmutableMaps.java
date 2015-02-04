@@ -47,14 +47,7 @@ public final class ImmutableMaps {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
 
-        final ImmutableMap.Builder<K, V> builder = ImmutableMap.builder();
-
-        for (final V value : iterable) {
-            final K key = keyFunction.apply(value);
-            builder.put(key, value);
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, keyFunction, ImmutableMap.<K, V>builder()).build();
     }
 
     /**
@@ -78,15 +71,7 @@ public final class ImmutableMaps {
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(valueFunction != null, "valueFunction must not be null.");
 
-        final ImmutableMap.Builder<K, V> builder = ImmutableMap.builder();
-
-        for (final E entry : iterable) {
-            final K key = keyFunction.apply(entry);
-            final V value = valueFunction.apply(entry);
-            builder.put(key, value);
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, keyFunction, valueFunction, ImmutableMap.<K, V>builder()).build();
     }
 
 
@@ -110,16 +95,7 @@ public final class ImmutableMaps {
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
 
-        final ImmutableMap.Builder<K, V> builder = ImmutableMap.builder();
-
-        for (final V entry : iterable) {
-            if (predicate.apply(entry)) {
-                final K key = keyFunction.apply(entry);
-                builder.put(key, entry);
-            }
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, predicate, keyFunction, ImmutableMap.<K, V>builder()).build();
     }
 
     /**
@@ -146,16 +122,6 @@ public final class ImmutableMaps {
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(valueFunction != null, "valueFunction must not be null.");
 
-        final ImmutableMap.Builder<K, V> builder = ImmutableMap.builder();
-
-        for (final E entry : iterable) {
-            if (predicate.apply(entry)) {
-                final K key = keyFunction.apply(entry);
-                final V value = valueFunction.apply(entry);
-                builder.put(key, value);
-            }
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, predicate, keyFunction, valueFunction, ImmutableMap.<K, V>builder()).build();
     }
 }

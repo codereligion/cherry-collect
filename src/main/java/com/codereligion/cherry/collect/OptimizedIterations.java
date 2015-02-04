@@ -18,10 +18,12 @@ package com.codereligion.cherry.collect;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.collect.ImmutableCollection;
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Multimap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 final class OptimizedIterations {
 
@@ -147,6 +149,91 @@ final class OptimizedIterations {
         return builder;
     }
 
+    static <K, V, M extends Map<K, V>> M createFrom(final Iterable<V> inputIterable, final Function<? super V, K> keyFunction, final M multimap) {
+
+        if (inputIterable instanceof ArrayList) {
+            final List<V> list = (List<V>) inputIterable;
+            for (int i = 0; i < list.size(); i++) {
+                final V entry = ((List<V>) inputIterable).get(i);
+                multimap.put(keyFunction.apply(entry), entry);
+            }
+        } else {
+            for (final V entry : inputIterable) {
+                multimap.put(keyFunction.apply(entry), entry);
+            }
+        }
+
+        return multimap;
+    }
+
+    static <K, V, E, M extends Map<K, V>> M createFrom(final Iterable<E> inputIterable,
+                                                       final Function<? super E, K> keyFunction,
+                                                       final Function<? super E, V> valueFunction,
+                                                       final M multimap) {
+
+        if (inputIterable instanceof ArrayList) {
+            final List<E> list = (List<E>) inputIterable;
+            for (int i = 0; i < list.size(); i++) {
+                final E entry = ((List<E>) inputIterable).get(i);
+                multimap.put(keyFunction.apply(entry), valueFunction.apply(entry));
+            }
+        } else {
+            for (final E entry : inputIterable) {
+                multimap.put(keyFunction.apply(entry), valueFunction.apply(entry));
+            }
+        }
+
+        return multimap;
+    }
+
+    static <K, V, M extends Map<K, V>> M createFrom(final Iterable<V> inputIterable,
+                                                    final Predicate<? super V> predicate,
+                                                    final Function<? super V, K> keyFunction,
+                                                    final M multimap) {
+
+        if (inputIterable instanceof ArrayList) {
+            final List<V> list = (List<V>) inputIterable;
+            for (int i = 0; i < list.size(); i++) {
+                final V entry = ((List<V>) inputIterable).get(i);
+                if (predicate.apply(entry)) {
+                    multimap.put(keyFunction.apply(entry), entry);
+                }
+            }
+        } else {
+            for (final V entry : inputIterable) {
+                if (predicate.apply(entry)) {
+                    multimap.put(keyFunction.apply(entry), entry);
+                }
+            }
+        }
+
+        return multimap;
+    }
+
+    static <E, K, V, M extends Map<K, V>> M createFrom(final Iterable<E> inputIterable,
+                                                       final Predicate<? super E> predicate,
+                                                       final Function<? super E, K> keyFunction,
+                                                       final Function<? super E, V> valueFunction,
+                                                       final M multimap) {
+
+        if (inputIterable instanceof ArrayList) {
+            final List<E> list = (List<E>) inputIterable;
+            for (int i = 0; i < list.size(); i++) {
+                final E entry = ((List<E>) inputIterable).get(i);
+                if (predicate.apply(entry)) {
+                    multimap.put(keyFunction.apply(entry), valueFunction.apply(entry));
+                }
+            }
+        } else {
+            for (final E entry : inputIterable) {
+                if (predicate.apply(entry)) {
+                    multimap.put(keyFunction.apply(entry), valueFunction.apply(entry));
+                }
+            }
+        }
+
+        return multimap;
+    }
 
     static <K, V, M extends Multimap<K, V>> M createFrom(final Iterable<V> inputIterable, final Function<? super V, K> keyFunction, final M multimap) {
 
@@ -232,5 +319,93 @@ final class OptimizedIterations {
         }
 
         return multimap;
+    }
+
+    static <K, V, B extends ImmutableMap.Builder<K, V>> B createFrom(final Iterable<V> inputIterable,
+                                                                     final Function<? super V, K> keyFunction,
+                                                                     final B builder) {
+
+        if (inputIterable instanceof ArrayList) {
+            final List<V> list = (List<V>) inputIterable;
+            for (int i = 0; i < list.size(); i++) {
+                final V entry = ((List<V>) inputIterable).get(i);
+                builder.put(keyFunction.apply(entry), entry);
+            }
+        } else {
+            for (final V entry : inputIterable) {
+                builder.put(keyFunction.apply(entry), entry);
+            }
+        }
+
+        return builder;
+    }
+
+    static <K, V, E, B extends ImmutableMap.Builder<K, V>> B createFrom(final Iterable<E> inputIterable,
+                                                                        final Function<? super E, K> keyFunction,
+                                                                        final Function<? super E, V> valueFunction,
+                                                                        final B builder) {
+
+        if (inputIterable instanceof ArrayList) {
+            final List<E> list = (List<E>) inputIterable;
+            for (int i = 0; i < list.size(); i++) {
+                final E entry = ((List<E>) inputIterable).get(i);
+                builder.put(keyFunction.apply(entry), valueFunction.apply(entry));
+            }
+        } else {
+            for (final E entry : inputIterable) {
+                builder.put(keyFunction.apply(entry), valueFunction.apply(entry));
+            }
+        }
+
+        return builder;
+    }
+
+    static <K, V, B extends ImmutableMap.Builder<K, V>> B createFrom(final Iterable<V> inputIterable,
+                                                                     final Predicate<? super V> predicate,
+                                                                     final Function<? super V, K> keyFunction,
+                                                                     final B builder) {
+
+        if (inputIterable instanceof ArrayList) {
+            final List<V> list = (List<V>) inputIterable;
+            for (int i = 0; i < list.size(); i++) {
+                final V entry = ((List<V>) inputIterable).get(i);
+                if (predicate.apply(entry)) {
+                    builder.put(keyFunction.apply(entry), entry);
+                }
+            }
+        } else {
+            for (final V entry : inputIterable) {
+                if (predicate.apply(entry)) {
+                    builder.put(keyFunction.apply(entry), entry);
+                }
+            }
+        }
+
+        return builder;
+    }
+
+    static <E, K, V, B extends ImmutableMap.Builder<K, V>> B createFrom(final Iterable<E> inputIterable,
+                                                                        final Predicate<? super E> predicate,
+                                                                        final Function<? super E, K> keyFunction,
+                                                                        final Function<? super E, V> valueFunction,
+                                                                        final B builder) {
+
+        if (inputIterable instanceof ArrayList) {
+            final List<E> list = (List<E>) inputIterable;
+            for (int i = 0; i < list.size(); i++) {
+                final E entry = ((List<E>) inputIterable).get(i);
+                if (predicate.apply(entry)) {
+                    builder.put(keyFunction.apply(entry), valueFunction.apply(entry));
+                }
+            }
+        } else {
+            for (final E entry : inputIterable) {
+                if (predicate.apply(entry)) {
+                    builder.put(keyFunction.apply(entry), valueFunction.apply(entry));
+                }
+            }
+        }
+
+        return builder;
     }
 }

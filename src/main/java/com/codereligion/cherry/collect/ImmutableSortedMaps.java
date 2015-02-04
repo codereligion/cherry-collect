@@ -48,14 +48,7 @@ public final class ImmutableSortedMaps {
         checkArgument(iterable != null, "iterable must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
 
-        final ImmutableSortedMap.Builder<K, V> builder = ImmutableSortedMap.naturalOrder();
-
-        for (final V value : iterable) {
-            final K key = keyFunction.apply(value);
-            builder.put(key, value);
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, keyFunction, ImmutableSortedMap.<K, V>naturalOrder()).build();
     }
 
     /**
@@ -78,14 +71,7 @@ public final class ImmutableSortedMaps {
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(comparator != null, "comparator must not be null.");
 
-        final ImmutableSortedMap.Builder<K, V> builder = ImmutableSortedMap.orderedBy(comparator);
-
-        for (final V value : iterable) {
-            final K key = keyFunction.apply(value);
-            builder.put(key, value);
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, keyFunction, ImmutableSortedMap.<K, V>orderedBy(comparator)).build();
     }
 
     /**
@@ -109,15 +95,7 @@ public final class ImmutableSortedMaps {
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(valueFunction != null, "valueFunction must not be null.");
 
-        final ImmutableSortedMap.Builder<K, V> builder = ImmutableSortedMap.naturalOrder();
-
-        for (final E entry : iterable) {
-            final K key = keyFunction.apply(entry);
-            final V value = valueFunction.apply(entry);
-            builder.put(key, value);
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, keyFunction, valueFunction, ImmutableSortedMap.<K, V>naturalOrder()).build();
     }
 
     /**
@@ -144,15 +122,7 @@ public final class ImmutableSortedMaps {
         checkArgument(valueFunction != null, "valueFunction must not be null.");
         checkArgument(comparator != null, "comparator must not be null.");
 
-        final ImmutableSortedMap.Builder<K, V> builder = ImmutableSortedMap.orderedBy(comparator);
-
-        for (final E entry : iterable) {
-            final K key = keyFunction.apply(entry);
-            final V value = valueFunction.apply(entry);
-            builder.put(key, value);
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, keyFunction, valueFunction, ImmutableSortedMap.<K, V>orderedBy(comparator)).build();
     }
 
     /**
@@ -175,16 +145,7 @@ public final class ImmutableSortedMaps {
         checkArgument(predicate != null, "predicate must not be null.");
         checkArgument(keyFunction != null, "keyFunction must not be null.");
 
-        final ImmutableSortedMap.Builder<K, V> builder = ImmutableSortedMap.naturalOrder();
-
-        for (final V entry : iterable) {
-            if (predicate.apply(entry)) {
-                final K key = keyFunction.apply(entry);
-                builder.put(key, entry);
-            }
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, predicate, keyFunction, ImmutableSortedMap.<K, V>naturalOrder()).build();
     }
 
     /**
@@ -209,16 +170,7 @@ public final class ImmutableSortedMaps {
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(comparator != null, "comparator must not be null.");
 
-        final ImmutableSortedMap.Builder<K, V> builder = ImmutableSortedMap.orderedBy(comparator);
-
-        for (final V entry : iterable) {
-            if (predicate.apply(entry)) {
-                final K key = keyFunction.apply(entry);
-                builder.put(key, entry);
-            }
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, predicate, keyFunction, ImmutableSortedMap.<K, V>orderedBy(comparator)).build();
     }
 
     /**
@@ -245,17 +197,7 @@ public final class ImmutableSortedMaps {
         checkArgument(keyFunction != null, "keyFunction must not be null.");
         checkArgument(valueFunction != null, "valueFunction must not be null.");
 
-        final ImmutableSortedMap.Builder<K, V> builder = ImmutableSortedMap.naturalOrder();
-
-        for (final E entry : iterable) {
-            if (predicate.apply(entry)) {
-                final K key = keyFunction.apply(entry);
-                final V value = valueFunction.apply(entry);
-                builder.put(key, value);
-            }
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, predicate, keyFunction, valueFunction, ImmutableSortedMap.<K, V>naturalOrder()).build();
     }
 
     /**
@@ -285,16 +227,6 @@ public final class ImmutableSortedMaps {
         checkArgument(valueFunction != null, "valueFunction must not be null.");
         checkArgument(comparator != null, "comparator must not be null.");
 
-        final ImmutableSortedMap.Builder<K, V> builder = ImmutableSortedMap.orderedBy(comparator);
-
-        for (final E entry : iterable) {
-            if (predicate.apply(entry)) {
-                final K key = keyFunction.apply(entry);
-                final V value = valueFunction.apply(entry);
-                builder.put(key, value);
-            }
-        }
-
-        return builder.build();
+        return OptimizedIterations.createFrom(iterable, predicate, keyFunction, valueFunction, ImmutableSortedMap.<K, V>orderedBy(comparator)).build();
     }
 }
