@@ -19,7 +19,6 @@ import com.codereligion.cherry.function.ToStringFunction;
 import com.codereligion.cherry.matcher.IsNotInstantiatable;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSortedSet;
@@ -36,7 +35,12 @@ import static org.mockito.Mockito.verify;
 
 public class OptimizedIterationsTest {
 
-    private final Predicate<Integer> predicate = Predicates.alwaysTrue();
+    private final Predicate<Integer> predicate = new Predicate<Integer>() {
+        @Override
+        public boolean apply(final Integer input) {
+            return input % 2 == 0;
+        }
+    };
     private final Function<Object, String> function = ToStringFunction.toStringFunction();
 
     private final List<TestCandidate> testCandidates = Lists.newArrayList(new TestCandidate() {
