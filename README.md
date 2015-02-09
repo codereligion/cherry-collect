@@ -8,7 +8,19 @@ It should be seen as an extension to existing libraries like the [apache commons
 The initial trigger to create this library was the [performance problems and limitations](https://github.com/codereligion/cherry-collect/wiki/FAQ#why-not-using-collections2-instead-of-this-library) when using ```Collections2``` from guava and it was open sourced because even after guava released the ```FluentIteable``` class we found that in performance critical environments like android using to much abstraction (e.g. fluent builders) can [slow down](https://github.com/codereligion/cherry-collect/wiki/Performance-comparison-to-alternative-guava-classes) simple operations like filtering a list to a set considerably.
 
 ## Features
-TODO
+* fast filtering and transformation using guavas ```Predicate``` and ```Function``` interfaces or all commonly used iterable implementations
+ * no "life views"
+ * no unnecessary abstraction
+ * optimized iteration for array lists (not using iterator)
+* transformation can also be used to convert iterables to maps and guava multi maps, supported operations are:
+ * key function (not supported in guava)
+ * key and value function
+ * filtering with key function
+ * filtering with key and value function
+* currently supported implementations
+ * iterable: ArrayList, LinkedList, HashSet, TreeSets, ImmutableList, ImmutableSet, ImmutableSortedSet
+ * map: HashMap, LinkedHashMap, TreeMaps, ImmutableMap, ImmutableSortedMap
+ * multi map: HashMultimaps, ArrayListMultimaps
 
 ## Usage
 TODO
