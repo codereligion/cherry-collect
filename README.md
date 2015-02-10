@@ -23,33 +23,69 @@ The initial trigger to create this library was the [performance problems and lim
 
 ## Usage
 Assuming you want to filter an arbitrary iterable implementation and the result should be an ```ArrayList```, then you would do:
-
 ```java
 Predicate<String> predicate = Predicates.alwaysTrue();
 List<String> result = ArrayLists.createFrom(inputIterable, predicate);
 ```
 
 alternatively you can also transform:
-
 ```java
 Function<Object, String> function = Functions.toStringFunction();
 List<String> result = ArrayLists.createFrom(inputIterable, function);
 ```
 
 or do both:
-
 ```java
 Predicate<Object> predicate = Predicates.alwaysTrue();
 Function<Object, String> function = Functions.toStringFunction();
 List<String> result = ArrayLists.createFrom(inputIterable, predicate, function);
 ```
 
-For maps the usage pattern looks like this:
+For maps and multi maps the usage pattern is similar.
 
+mapping a transformed version of the object to itself:
 ```java
-
+Iterable<Integer> iterable = Lists.newArrayList(1, 2);
+Function<Integer, String> keyFunction = toStringFunction();
+Map<String, Integer> result = HashMaps.createFrom(iterable, keyFunction);
+```
+This would create a map like this:
+```
+"1" => 1
+"2" => 2
 ```
 
+mapping one transformed version of the object to another transformed version:
+```java
+Iterable<Integer> iterable = Lists.newArrayList(1, 2);
+Function<Integer, String> keyFunction = toStringFunction();
+Function<Integer, Integer> valueFunction = minusOneFunction();
+Map<String, Integer> result = HashMaps.createFrom(iterable, keyFunction, valueFunction);
+```
+This would create a map like this:
+```
+"1" => 0
+"2" => 1
+```
+
+Both operations described above can also be combined with a predicate, which would filter the incoming iterable first before transforming the objects.
+
+filter and apply key function:
+```java
+Iterable<Integer> iterable = Lists.newArrayList(1, 2);
+Predicate<Integer> predicate = Predicates.alwaysTrue();
+Function<Integer, String> keyFunction = toStringFunction();
+Map<String, Integer> result = HashMaps.createFrom(iterable, predicate, keyFunction);
+```
+
+filter and apply key and value function
+```java
+Iterable<Integer> iterable = Lists.newArrayList(1, 2);
+Predicate<Integer> predicate = Predicates.alwaysTrue();
+Function<Integer, String> keyFunction = toStringFunction();
+Function<Integer, String> valueFunction = toStringFunction();
+Map<String, String> result = HashMaps.createFrom(iterable, predicate, keyFunction, valueFunction);
+```
 
 
 ## Requirements
