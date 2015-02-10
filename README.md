@@ -13,17 +13,43 @@ The initial trigger to create this library was the [performance problems and lim
  * no unnecessary abstraction
  * optimized iteration for array lists (not using iterator)
 * transformation can also be used to convert iterables to maps and guava multi maps, supported operations are:
- * key function (not supported in guava)
- * key and value function
- * filtering with key function
- * filtering with key and value function
+ * using a key function to transform the value and map it to its original object
+ * using a key and a value function to transform the object into two different objects to create the mapping
+ * filtering the input iterable first and then apply either the first or second operation from above
 * currently supported implementations
- * iterable: ArrayList, LinkedList, HashSet, TreeSets, ImmutableList, ImmutableSet, ImmutableSortedSet
- * map: HashMap, LinkedHashMap, TreeMaps, ImmutableMap, ImmutableSortedMap
- * multi map: HashMultimaps, ArrayListMultimaps
+ * iterable: ```ArrayList```, ```LinkedList```, ```HashSet```, ```TreeSet```, ```ImmutableList```, ```ImmutableSet```, ```ImmutableSortedSet```
+ * map: ```HashMap```, ```LinkedHashMap```, ```TreeMap```, ```ImmutableMap```, ```ImmutableSortedMap```
+ * multi map: ```HashMultimap```, ```ArrayListMultimap```
 
 ## Usage
-TODO
+Assuming you want to filter an arbitrary iterable implementation and the result should be an ```ArrayList```, then you would do:
+
+```java
+Predicate<String> predicate = Predicates.alwaysTrue();
+List<String> result = ArrayLists.createFrom(inputIterable, predicate);
+```
+
+alternatively you can also transform:
+
+```java
+Function<Object, String> function = Functions.toStringFunction();
+List<String> result = ArrayLists.createFrom(inputIterable, function);
+```
+
+or do both:
+
+```java
+Predicate<Object> predicate = Predicates.alwaysTrue();
+Function<Object, String> function = Functions.toStringFunction();
+List<String> result = ArrayLists.createFrom(inputIterable, predicate, function);
+```
+
+For maps the usage pattern looks like this:
+
+```java
+
+```
+
 
 
 ## Requirements
