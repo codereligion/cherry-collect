@@ -94,12 +94,17 @@ The following table shows average improvements of functions of this library to c
 
 Measuring was done on iterables holding 1.000.000 elements. Each operation was repeated 40 times and the fastest operation was considered in order to not let arbitrary garbage collections falsify the result. The actual implementations of ```Predicate```s and ```Function```s where chosen to be as efficient as possible to keep noise at a minimum. So for filter operations an "always true" filter was used and for transformations a "return input" functions was used.
 
-| input type | operation | output type | avg. improvement |
-|------------|-----------|-------------|------------------|
-| ArrayList  | filter    | ArrayList   | 180%             |
-| LinkedList | filter    | ArrayList   | 80%              |
-| HashSet    | filter    | ArrayList   | 80%              |
-
+| input type | operation          | output type | avg. improvement |
+|------------|--------------------|-------------|------------------|
+| ArrayList  | filter             | ArrayList   | 180%             |
+| LinkedList | filter             | ArrayList   | 80%              |
+| HashSet    | filter             | ArrayList   | 80%              |
+| ArrayList  | transform          | ArrayList   | 60%              |
+| LinkedList | transform          | ArrayList   | 35%              |
+| HashSet    | transform          | ArrayList   | 28%              |
+| ArrayList  | filter + transform | ArrayList   | 200%             |
+| LinkedList | filter + transform | ArrayList   | 100%             |
+| HashSet    | filter + transform | ArrayList   | 125%             |
 
 ## Requirements
 * Java 1.5 or higher
