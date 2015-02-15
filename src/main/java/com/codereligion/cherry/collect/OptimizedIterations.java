@@ -154,7 +154,7 @@ final class OptimizedIterations {
         if (inputIterable instanceof ArrayList) {
             final List<V> list = (List<V>) inputIterable;
             for (int i = 0; i < list.size(); i++) {
-                final V entry = ((List<V>) inputIterable).get(i);
+                final V entry = list.get(i);
                 multimap.put(keyFunction.apply(entry), entry);
             }
         } else {
@@ -174,7 +174,7 @@ final class OptimizedIterations {
         if (inputIterable instanceof ArrayList) {
             final List<E> list = (List<E>) inputIterable;
             for (int i = 0; i < list.size(); i++) {
-                final E entry = ((List<E>) inputIterable).get(i);
+                final E entry = list.get(i);
                 multimap.put(keyFunction.apply(entry), valueFunction.apply(entry));
             }
         } else {
@@ -194,7 +194,7 @@ final class OptimizedIterations {
         if (inputIterable instanceof ArrayList) {
             final List<V> list = (List<V>) inputIterable;
             for (int i = 0; i < list.size(); i++) {
-                final V entry = ((List<V>) inputIterable).get(i);
+                final V entry = list.get(i);
                 if (predicate.apply(entry)) {
                     multimap.put(keyFunction.apply(entry), entry);
                 }
@@ -219,7 +219,7 @@ final class OptimizedIterations {
         if (inputIterable instanceof ArrayList) {
             final List<E> list = (List<E>) inputIterable;
             for (int i = 0; i < list.size(); i++) {
-                final E entry = ((List<E>) inputIterable).get(i);
+                final E entry = list.get(i);
                 if (predicate.apply(entry)) {
                     multimap.put(keyFunction.apply(entry), valueFunction.apply(entry));
                 }
@@ -240,7 +240,7 @@ final class OptimizedIterations {
         if (inputIterable instanceof ArrayList) {
             final List<V> list = (List<V>) inputIterable;
             for (int i = 0; i < list.size(); i++) {
-                final V entry = ((List<V>) inputIterable).get(i);
+                final V entry = list.get(i);
                 multimap.put(keyFunction.apply(entry), entry);
             }
         } else {
@@ -260,7 +260,7 @@ final class OptimizedIterations {
         if (inputIterable instanceof ArrayList) {
             final List<E> list = (List<E>) inputIterable;
             for (int i = 0; i < list.size(); i++) {
-                final E entry = ((List<E>) inputIterable).get(i);
+                final E entry = list.get(i);
                 multimap.put(keyFunction.apply(entry), valueFunction.apply(entry));
             }
         } else {
@@ -280,7 +280,7 @@ final class OptimizedIterations {
         if (inputIterable instanceof ArrayList) {
             final List<V> list = (List<V>) inputIterable;
             for (int i = 0; i < list.size(); i++) {
-                final V entry = ((List<V>) inputIterable).get(i);
+                final V entry = list.get(i);
                 if (predicate.apply(entry)) {
                     multimap.put(keyFunction.apply(entry), entry);
                 }
@@ -305,7 +305,7 @@ final class OptimizedIterations {
         if (inputIterable instanceof ArrayList) {
             final List<E> list = (List<E>) inputIterable;
             for (int i = 0; i < list.size(); i++) {
-                final E entry = ((List<E>) inputIterable).get(i);
+                final E entry = list.get(i);
                 if (predicate.apply(entry)) {
                     multimap.put(keyFunction.apply(entry), valueFunction.apply(entry));
                 }
@@ -328,7 +328,7 @@ final class OptimizedIterations {
         if (inputIterable instanceof ArrayList) {
             final List<V> list = (List<V>) inputIterable;
             for (int i = 0; i < list.size(); i++) {
-                final V entry = ((List<V>) inputIterable).get(i);
+                final V entry = list.get(i);
                 builder.put(keyFunction.apply(entry), entry);
             }
         } else {
@@ -348,7 +348,7 @@ final class OptimizedIterations {
         if (inputIterable instanceof ArrayList) {
             final List<E> list = (List<E>) inputIterable;
             for (int i = 0; i < list.size(); i++) {
-                final E entry = ((List<E>) inputIterable).get(i);
+                final E entry = list.get(i);
                 builder.put(keyFunction.apply(entry), valueFunction.apply(entry));
             }
         } else {
@@ -368,7 +368,7 @@ final class OptimizedIterations {
         if (inputIterable instanceof ArrayList) {
             final List<V> list = (List<V>) inputIterable;
             for (int i = 0; i < list.size(); i++) {
-                final V entry = ((List<V>) inputIterable).get(i);
+                final V entry = list.get(i);
                 if (predicate.apply(entry)) {
                     builder.put(keyFunction.apply(entry), entry);
                 }
@@ -393,7 +393,7 @@ final class OptimizedIterations {
         if (inputIterable instanceof ArrayList) {
             final List<E> list = (List<E>) inputIterable;
             for (int i = 0; i < list.size(); i++) {
-                final E entry = ((List<E>) inputIterable).get(i);
+                final E entry = list.get(i);
                 if (predicate.apply(entry)) {
                     builder.put(keyFunction.apply(entry), valueFunction.apply(entry));
                 }
