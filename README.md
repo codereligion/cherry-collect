@@ -106,6 +106,36 @@ Measuring was done on iterables holding 1.000.000 elements. Each operation was r
 | LinkedList | filter + transform | ArrayList   | 100%             |
 | HashSet    | filter + transform | ArrayList   | 125%             |
 
+## FAQ
+
+### Why not using ```Collections2``` instead of this library?
+The ```Collections2.filter``` and ```Collections2.transform``` methods return "live views". This means any operation on such a view causes the underlying collection to be filtered and/or transformed. The usual fix to this problem is to directly copy the result into a new collection.
+
+
+```java
+// bad: each call to size causes the filter (predicate) to be applied to all elements, which means the time complexity is O(n)
+Collections2.filter(input, predicate).size();
+
+// better: since this is a copy of the live view, the size call has the complexity of the implementation the elements where copied into, meaning O(1)
+new ArrayList<String>(Collections2.filter(input, predicate)).size();
+
+// best: this just iterates once over the input applying the given predicate to create a new collection
+ArrayLists.createFrom(input, predicate).size();
+```
+
+In any case where you really do not need a live view, you should consider using other ways to filter/transform you collections.
+
+Aside from the above mentioned performance problems caused by the life views, ```Collections2``` really just returns collections, which can be a little inconvenient when you want to use list features. There is no ```Lists.filter``` method and the ```Lists.transform``` method only takes a list as input.
+
+### Why not using ```FluentIterable``` instead of this library?
+```FluentIterable``` aside from its fluent interface is a major improvement to the initial methods provided by ```Collections2```, ```Lists```, ```Maps``` and ```Iterables```, however there are some problems:
+
+1. The usage of builders creates additional objects
+2. ```FluentIterable.to*``` methods always return immutable objects and the usage of ```FluentIterable.copyInto(Collection)``` seems a little clumsy
+3. ```FluentIterable``` uses ```Iterables``` for iterating when filtering and transforming, which always uses an iterator of which the creation might be expensive
+
+Under normal circumstances these problems may not seem to be to big, but in performance critical environments you might want reconsider the usage of the ```FluentIterable``` and replace those performance critical parts with more efficient code.
+
 ## Requirements
 * Java 1.5 or higher
 * dependencies see [maven pom](pom.xml)
