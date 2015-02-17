@@ -21,6 +21,10 @@ The initial trigger to create this library was the [performance problems and lim
  * map: ```HashMap```, ```LinkedHashMap```, ```TreeMap```, ```ImmutableMap```, ```ImmutableSortedMap```
  * multi map: ```HashMultimap```, ```ArrayListMultimap```
 
+
+## Requirements
+* Java 1.6 or higher
+
 ## Usage
 Assuming you want to filter an arbitrary iterable implementation and the result should be an ```ArrayList```, then you would do:
 ```java
@@ -135,10 +139,6 @@ Aside from the above mentioned performance problems caused by the life views, ``
 3. ```FluentIterable``` uses ```Iterables``` for iterating when filtering and transforming, which always uses an iterator of which the creation might be expensive
 
 Under normal circumstances these problems may not seem to be to big, but in performance critical environments you might want reconsider the usage of the ```FluentIterable``` and replace those performance critical parts with more efficient code.
-
-## Requirements
-* Java 1.5 or higher
-* dependencies see [maven pom](pom.xml)
 
 ## Attributions
 The cherry icon originated from www.vector4free.com and is distributed under the [Creative Commons 4.0 License](http://creativecommons.org/licenses/by/4.0/)
