@@ -3,12 +3,12 @@
 This library is part of the [cherry project](https://github.com/codereligion/cherry), it contains utility classes for working with iterables and maps and their respective extensions and implementations. 
 
 ## Context of this library
-It should be seen as an extension to existing libraries like the [apache commons collections](http://commons.apache.org/proper/commons-collections/) and [google guava](https://code.google.com/p/guava-libraries/). It is no way meant to replace any of the above libraries. In fact it uses guava interfaces like ```Function``` and ```Predicate``` in its public API. The current main responsibility of this library is to provide fast and convenient factory methods for common iterable and map classes which always takes an iterable as input and converts it to the target iterable or map by applying functions and predicates.
+It should be seen as an extension to existing libraries like the [apache commons collections](http://commons.apache.org/proper/commons-collections/) and [google guava](https://code.google.com/p/guava-libraries/). It is in no way meant to replace any of the above libraries. In fact it uses guava interfaces like ```Function``` and ```Predicate``` in its public API. The current main responsibility of this library is to provide fast and convenient factory methods for common iterable and map classes which always takes an iterable as input and converts it to the target iterable or map by applying functions and predicates.
 
 The initial trigger to create this library was the [performance problems and limitations](https://github.com/codereligion/cherry-collect#faq) when using ```Collections2``` from guava and it was open sourced because even after guava released the ```FluentIteable``` class we found that in performance critical environments like android using to much abstraction (e.g. fluent builders) can [slow down](https://github.com/codereligion/cherry-collect#performance-improvements) simple operations like filtering a list to a set considerably.
 
 ## Features
-* fast filtering and transformation using guavas ```Predicate``` and ```Function``` interfaces or all commonly used iterable implementations
+* fast filtering and transformation using guavas ```Predicate``` and ```Function``` interfaces for all commonly used iterable implementations
  * no "life views"
  * no unnecessary abstraction
  * optimized iteration for array lists (not using iterator)
@@ -138,7 +138,7 @@ Aside from the above mentioned performance problems caused by the life views, ``
 2. ```FluentIterable.to*``` methods always return immutable objects and the usage of ```FluentIterable.copyInto(Collection)``` seems a little clumsy
 3. ```FluentIterable``` uses ```Iterables``` for iterating when filtering and transforming, which always uses an iterator of which the creation might be expensive
 
-Under normal circumstances these problems may not seem to be to big, but in performance critical environments you might want reconsider the usage of the ```FluentIterable``` and replace those performance critical parts with more efficient code.
+Under normal circumstances these problems may not seem to be to big, but in performance critical environments you might want to reconsider the usage of the ```FluentIterable``` and replace those performance critical parts with more efficient code.
 
 ## Attributions
 The cherry icon originated from www.vector4free.com and is distributed under the [Creative Commons 4.0 License](http://creativecommons.org/licenses/by/4.0/)
